@@ -6,21 +6,22 @@ When using the inventory and/or parts of this script for your work, please cite 
 
 **CITATION**
 
-### Installing *gmbaR*
-If needed, use `install.packages("devtools")` to install the *devtools* package.
-
-Then, use `devtools::install_github("GMBA-biodiversity/gmbaR")` to install *gmbaR*.
 
 ### The inventory
-The inventory consists of two main files that are available on the [EarthEnv](https://www.earthenv.org/mountains) project website:
+The GMBA Mountain Inventory v2.0 consists of two main files that are available on the [EarthEnv](https://www.earthenv.org/mountains) project website:
 
 ##### 1. The inventory shapefile
 The inventory shapefile *GMBA_Inventory_v2.0.shp* contains the spatial data of the GMBA Inventory v2.0.
 
 ##### 2. The Selection Tool
-The selection tool *Selection file.xlsx* is an Excel sheet providing the hierarchy data of the GMBA Inventory v2.0. When opening this in Excel, you have access to the full mountain inventory except the spatial data. You can manually select those mountain ranges you want to further use in your work in column AA ("Range_Selector") of the Excel sheet and then save the file for further use. For example, with *gmba_ids_from_selectiontool*, you can directly read the selected IDs to R.
+The selection tool *Selection file.xlsx* is an Excel sheet providing the hierarchy data of the GMBA Inventory v2.0. When opening this in Excel, you have access to the full mountain inventory except the spatial data. You can manually select those mountain ranges you want to further use in your work in column AA ("Range_Selector") of the Excel sheet and then save the file for further use. For example, with *gmba_ids_from_selectiontool* from *gmbaR*, you can directly read the selected IDs to R.
 
-Alternatively, you can use `gmba_select()` to filter and select mountain ranges from the inventory.
+Alternatively, you can use `gmba_select()` from *gmbaR* to filter and select mountain ranges from the inventory.
+
+### Installing *gmbaR*
+If needed, use `install.packages("devtools")` to install the *devtools* package.
+
+Then, use `devtools::install_github("GMBA-biodiversity/gmbaR")` to install *gmbaR*.
 
 ### Reading the inventory to R
 Before working with the GMBA Inventory v2.0, you need to read it to R. This can be done using *gmba_read*, either directly from the web or from your local drive.
