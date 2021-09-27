@@ -10,7 +10,7 @@ When using the inventory and/or parts of this script for your work, please cite 
 Use `devtools::install_github("GMBA-biodiversity/gmbaR")` to install *gmbaR*.
 
 ### The inventory
-The inventory consists of two main files that are available on the [EarthEnv](https://www.earthenv.org/) project website:
+The inventory consists of two main files that are available on the [EarthEnv](https://www.earthenv.org/mountains) project website:
 
 ##### 1. The inventory shapefile
 The inventory shapefile *GMBA_Inventory_v2.0.shp* contains the spatial data of the GMBA Inventory v2.0.
