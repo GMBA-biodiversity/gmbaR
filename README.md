@@ -18,7 +18,7 @@ The inventory consists of two main files that are available on the [EarthEnv](ht
 The inventory shapefile *GMBA_Inventory_v2.0.shp* contains the spatial data of the GMBA Inventory v2.0.
 
 ##### 2. The Selection Tool
-The selection tool *Selection file.xlsx* is an Excel sheet providing the hierarchy data of the GMBA Inventory v2.0. When opening this in Excel, you have the full access to mountain inventory data -- except for the spatial data. You can manually select those mountain ranges you want to further use in your work in column AA ("Range_Selector") of the Excel sheet and then save the file for further use. For example, with *gmba_ids_from_selectiontool*, you can directly read the selected IDs to R.
+The selection tool *Selection file.xlsx* is an Excel sheet providing the hierarchy data of the GMBA Inventory v2.0. When opening this in Excel, you have access to the full mountain inventory except the spatial data. You can manually select those mountain ranges you want to further use in your work in column AA ("Range_Selector") of the Excel sheet and then save the file for further use. For example, with *gmba_ids_from_selectiontool*, you can directly read the selected IDs to R.
 
 Alternatively, you can use `gmba_select()` to filter and select mountain ranges from the inventory.
 
@@ -41,7 +41,6 @@ The function `gmba_select()` can be used for all three functionalities.
 For analyses across scales, `gmba_lower_id_from_higher()` allows to take a certain mountain range, for example the Black Forest (ID = 11175) and get a certain lower level from its GMBA Inventory v2.0 hierarchy: With `method = "parent"`, you can choose a specific lower level of the given input ID; with `method = "steps"`, you can specify the number of lower levels you want to get from perspective of the given mountain range ID. See the figure for a visual explanation of the two methods, with `lowerlevel_numeric = 2`:
 
 <img src="man/figures/gmba_lower_id_from_higher_method.png" width="500" align="left"/>
-<br/>
 <br/>
 <br/>
 <br/>
