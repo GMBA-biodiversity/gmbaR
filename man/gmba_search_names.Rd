@@ -4,10 +4,30 @@
 \alias{gmba_search_names}
 \title{Search for mountain range names}
 \usage{
-gmba_search_names(part_of_rangename)
+gmba_search_names(part_of_rangename, language = "EN", db = "NULL")
 }
 \arguments{
 \item{part_of_rangename}{Character string of part of a mountain range name}
+
+\item{language}{Character string of a language to select. The options are:
+\itemize{
+\item{\emph{"EN"} = English (default)}
+\item{\emph{"DE"} = German / Deutsch}
+\item{\emph{"ES"} = Spanish / español}
+\item{\emph{"FR"} = French / français}
+\item{\emph{"PT"} = Portuguese / português}
+\item{\emph{"RU"} = Russian / русский}
+\item{\emph{"TR"} = Turkish / Türkçe}
+\item{\emph{"ZH"} = Chinese / 中文}
+}
+Note: Mountain names in a language other than English are not complete but
+only available for those where Wikidata has a translation available.}
+
+\item{db}{Logical, indicating if to output a named vector. If \emph{TRUE},
+the translation (language other than English) will be the name of the
+database name of each mountain range. If \emph{FALSE}, the translation
+(language other than English) will be given. Only needed when \code{language} is set
+to other than \emph{EN}. Default therefore is set to \emph{NULL}}
 }
 \value{
 Character vector of the GMBA Inventory v2.0 mountain range names
