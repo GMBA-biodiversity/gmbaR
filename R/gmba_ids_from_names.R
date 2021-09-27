@@ -1,0 +1,33 @@
+#' Get mountain range IDs from mountain range names
+#'
+#' Get GMBA Inventory v2.0 mountain range IDs from known mountain range names.
+#'
+#' @param rangename_vector Character vector of GMBA Inventory v2.0 mountain range names.
+#' Use \code{gmba_search_names()} if you do not know the inventory names needed
+#'
+#' @return Character vector of the GMBA Inventory v2.0 mountain range IDs associated
+#' with the input names
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' rangeid <- gmba_ids_from_names("Black Forest")
+#' rangeids <- gmba_ids_from_names(c("Black Forest", "European Alps"))
+#' }
+
+gmba_ids_from_names <- function(rangename_vector){
+  # check if the inventory is read
+  if(exists("gmba_inv") == FALSE){
+    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
+  }
+  # function
+  gmba_inventory_ids <- gmba_inv()$GMBA_V2_ID
+  gmba_inventory_names <- as.character(gmba_inv()$DBaseName)
+  ids <- gmba_inventory_ids[which(gmba_inventory_names %in% rangename_vector)]
+  if(length(ids) == 0){
+    warning("The given mountain range(s) do not exist. Misspelled? Use gmba_search_names() to find the inventory names needed.\n")}
+  else {
+    return(ids)
+  }
+}
