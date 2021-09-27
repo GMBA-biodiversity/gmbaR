@@ -4,7 +4,7 @@
 \alias{gmba_search_names}
 \title{Search for mountain range names}
 \usage{
-gmba_search_names(part_of_rangename, language = "EN", db = "NULL")
+gmba_search_names(part_of_rangename, language = "EN", db = NULL)
 }
 \arguments{
 \item{part_of_rangename}{Character string of part of a mountain range name}
