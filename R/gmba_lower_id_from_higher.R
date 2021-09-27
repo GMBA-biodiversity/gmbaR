@@ -11,7 +11,7 @@
 #' \itemize{
 #' \item{\emph{"parent"} = a certain lower range of range ID}
 #' \item{\emph{"steps"} = number of lower levels from range ID}}
-#' See the \href{https://github.com/GMBA-biodiversiry/gmbaR/blob/master/README.md}{gmbaR README} for a visual explanation of the two methods
+#' See the \href{https://github.com/GMBA-biodiversity/gmbaR/blob/main/README.md}{README} for a visual explanation of the two methods
 #'
 #' @return Character string of the lower GMBA Inventory v2.0 mountain range ID associated
 #' with the input ID
