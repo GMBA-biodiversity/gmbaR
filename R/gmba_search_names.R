@@ -30,7 +30,9 @@
 #'
 #' @examples
 #' \dontrun{
-#'  gmba_search_names("forest")
+#'  gmba_search_names("alp")
+#'  gmba_search_names("alp", "DE", FALSE)
+#'  gmba_search_names("alp", "DE", TRUE)
 #' }
 
 gmba_search_names <- function(part_of_rangename, language = "EN", db = NULL){
