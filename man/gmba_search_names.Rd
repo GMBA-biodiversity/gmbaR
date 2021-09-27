@@ -38,6 +38,8 @@ Search GMBA Inventory v2.0 mountain range names based on parts of names.
 }
 \examples{
 \dontrun{
- gmba_search_names("forest")
+ gmba_search_names("alp")
+ gmba_search_names("alp", "DE", FALSE)
+ gmba_search_names("alp", "DE", TRUE)
 }
 }
