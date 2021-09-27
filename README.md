@@ -7,7 +7,9 @@ When using the inventory and/or parts of this script for your work, please cite 
 **CITATION**
 
 ### Installing *gmbaR*
-Use `devtools::install_github("GMBA-biodiversity/gmbaR")` to install *gmbaR*.
+If needed, use `install.packages("devtools")` to install the *devtools* package.
+
+Then, use `devtools::install_github("GMBA-biodiversity/gmbaR")` to install *gmbaR*.
 
 ### The inventory
 The inventory consists of two main files that are available on the [EarthEnv](https://www.earthenv.org/mountains) project website:
