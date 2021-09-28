@@ -4,7 +4,7 @@
 \alias{gmba_search_names}
 \title{Search for mountain range names}
 \usage{
-gmba_search_names(part_of_rangename, language = "EN", db = NULL)
+gmba_search_names(part_of_rangename, language = "EN", db = FALSE)
 }
 \arguments{
 \item{part_of_rangename}{Character string of part of a mountain range name}
@@ -26,8 +26,8 @@ only available for those where Wikidata has a translation available.}
 \item{db}{Logical, indicating if to output a named vector. If \emph{TRUE},
 the translation (language other than English) will be the name of the
 database name of each mountain range. If \emph{FALSE}, the translation
-(language other than English) will be given. Only needed when \code{language} is set
-to other than \emph{EN}. Default therefore is set to \emph{NULL}}
+(language other than English) will be given. The argument is only needed when
+\code{language} is set to other than \emph{EN}. Default is set to \emph{FALSE}}
 }
 \value{
 Character vector of the GMBA Inventory v2.0 mountain range names
@@ -39,7 +39,7 @@ Search GMBA Inventory v2.0 mountain range names based on parts of names.
 \examples{
 \dontrun{
  gmba_search_names("alp")
- gmba_search_names("alp", "DE", FALSE)
+ gmba_search_names("alp", "DE")
  gmba_search_names("alp", "DE", TRUE)
 }
 }

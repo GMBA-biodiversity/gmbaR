@@ -19,8 +19,8 @@
 #' @param db Logical, indicating if to output a named vector. If \emph{TRUE},
 #' the translation (language other than English) will be the name of the
 #' database name of each mountain range. If \emph{FALSE}, the translation
-#' (language other than English) will be given. Only needed when \code{language} is set
-#' to other than \emph{EN}. Default therefore is set to \emph{NULL}
+#' (language other than English) will be given. The argument is only needed when
+#' \code{language} is set to other than \emph{EN}. Default is set to \emph{FALSE}
 #'
 #' @return Character vector of the GMBA Inventory v2.0 mountain range names
 #' associated with the input name part
@@ -31,11 +31,11 @@
 #' @examples
 #' \dontrun{
 #'  gmba_search_names("alp")
-#'  gmba_search_names("alp", "DE", FALSE)
+#'  gmba_search_names("alp", "DE")
 #'  gmba_search_names("alp", "DE", TRUE)
 #' }
 
-gmba_search_names <- function(part_of_rangename, language = "EN", db = NULL){
+gmba_search_names <- function(part_of_rangename, language = "EN", db = FALSE){
   # check if the inventory is read
   if(exists("gmba_inv") == FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
@@ -77,7 +77,7 @@ gmba_search_names <- function(part_of_rangename, language = "EN", db = NULL){
   gmba_inventory_names_lowercase <- tolower(gmba_inventory_names)
   rangenames <- gmba_inventory_names[which(grepl(name_vector_lowercase, gmba_inventory_names_lowercase))]
   if(language != "EN"){
-    if(is.null(db)){stop("Argument 'db' must be set to TRUE or FALSE.")}
+    if(!(db %in% c(FALSE, TRUE))){stop("Argument 'db' must be set to FALSE or TRUE")}
     if(isTRUE(db)){
       attributetable <- gmba_inv()[,c(2,3:35)] # ADJUST COLUMNS
       attributetable <- st_set_geometry(attributetable, NULL)
