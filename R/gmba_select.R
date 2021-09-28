@@ -75,6 +75,12 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       if(country_input == "stop"){stop("manual stop")}
       country_input <- gsub(" ", "", country_input, fixed = TRUE)
       country_input <- tolower(unlist(strsplit(country_input, ",")))
+      if(sum(unique(nchar(country_input))) != 3){repeat{
+        country_input <- suppressWarnings(readline(prompt = paste("The input must be one or more ISO-3 code(s), all with 3 characters, separated by a comma. Input: ", sep="")))
+        if(country_input == "stop"){stop("manual stop")}
+        country_input <- gsub(" ", "", country_input, fixed = TRUE)
+        country_input <- tolower(unlist(strsplit(country_input, ",")))
+        if(sum(unique(nchar(country_input))) == 3){break}}} # readline test
       ranges <- NA
       for(iso in 1:length(country_input)){
         rangesloop <- attributetable[which(grepl(country_input[iso], Countries_lowercase)), which(attributes == "GMBA_V2_ID")]
@@ -83,7 +89,8 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       ranges <- unique(ranges)
       ranges <- ranges[-which(is.na(ranges))]
       if(length(ranges) == 0){
-        warning("For the selected countries, no mountain polygons were found.")
+        warning("For the selected countries, no mountain polygons were found.",
+                immediate. = TRUE)
       } else {
         rangeselection <- rangeselection[which(rangeselection %in% ranges)]
         print(attributetable[which(ids %in% rangeselection), which(attributes == "DBaseName")])
@@ -164,7 +171,8 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
     # filter by IPCC regions
     if(filteroption == 4){
 
-      warning("The IPCC filter option is not implemented yet.")
+      warning("The IPCC filter option is not implemented yet.",
+              immediate. = TRUE)
       #
       # # based on doi.org/10.5194/essd-12-2959-2020
       # cat(paste("Enter one or more IPCC regions, separated by comma: \n1: Greenland/Iceland (GIC) \n2: N.W.North-America (NWN) \n3: N.E.North-America (NEN) \n4: W.North-America (WNA) \n5: C.North-America (CNA) \n6: E.North-America (ENA) \n7: N.Central-America (NCA) \n8: S.Central-America (SCA) \n9 or 10: Caribbean (CAR) \n11: N.W.South-America (NWS) \n12: N.South-America (NSA) \n13: N.E.South-America (NES) \n14: South-American-Monsoon (SAM) \n15: S.W.South-America (SWS) \n16: S.E.South-America (SES) \n17: S.South-America (SSA) \n18: N.Europe (NEU) \n19: Western&Central-Asia (WCE) \n20: E.Europe (EEU) \n21 or 22: Mediterranean (MED) \n23: Sahara (SAH) \n24: Western-Africa (WAF) \n25: Central-Africa (CAF) \n26: N.Eastern-Africa (NEAF) \n27: S.Eastern-Africa (SEAF) \n28: W.Southern-Africa (WSAF) \n29: E.Southern-Africa (ESAF) \n30: Madagascar (MDG) \n31: Russian-Arctic (RAR) \n32: W.Siberia (WSB) \n33: E.Siberia (ESB) \n34: Russian-Far-East (RFE) \n35: W.C.Asia (WCA) \n36: E.C.Asia (ECA) \n37: Tibetan-Planteau (TIB) \n38: E.Asia (EAS) \n39: Arabian-Peninsula (ARP) \n40: S.Asia (SAS) \n41 or 42: S.E.Asia (SEA) \n43: N.Australia (NAU) \n44: C.Australia (CAU) \n45: E.Australia (EAU) \n46: S.Australia (SAU) \n47: New-Zealand (NZ)", sep=""))
