@@ -8,7 +8,7 @@
 #' @docType package
 #' @name gmbaR
 #' @keywords internal
-#' @import grDevices
+#' @import sf grDevices
 "_PACKAGE"
 
 ## helper functions
