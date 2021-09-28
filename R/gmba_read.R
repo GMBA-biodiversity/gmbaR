@@ -9,7 +9,7 @@
 #' @return \code{gmba_inv()}, a function containing the GMBA Inventory v2.0
 #'
 #' @references
-#' \url{URL}
+#' \url{https://www.earthenv.org/mountains}
 #'
 #' @import sf
 #' @export
@@ -33,11 +33,11 @@ gmba_read <- function(source = "web", local = NULL) { # WEB TO ADD
   # read from local drive
   if(source == "local"){
     gmba_inventory_v_2_0 <- st_read(local, quiet=TRUE)
-    gmba_inventory_v_2_0$GMBA_V2_ID <- as.character(gmba_inventory_v_2_0$GMBA_V2_ID)
-    return(assign("gmba_inv",
-                  local({
-                    function() gmba_inventory_v_2_0
-                  }),
-                  envir = parent.frame()))
   }
+  gmba_inventory_v_2_0$GMBA_V2_ID <- as.character(gmba_inventory_v_2_0$GMBA_V2_ID)
+  return(assign("gmba_inv",
+                local({
+                  function() gmba_inventory_v_2_0
+                }),
+                envir = parent.frame()))
 }
