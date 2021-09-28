@@ -24,5 +24,5 @@ gmba_read(source = "local", local = "GMBA_Inventory_V2_All_Attributes.shp")
 }
 }
 \references{
-\url{URL}
+\url{https://www.earthenv.org/mountains}
 }
