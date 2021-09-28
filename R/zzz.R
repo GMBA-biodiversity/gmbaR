@@ -13,6 +13,46 @@
 
 ## helper functions
 
+# function to retrieve the attribute table from gmba_inv()
+attributetable <- function(){
+  at <- gmba_inv()[,c(which(names(gmba_inv()) %in% c("GMBA_V2_ID",
+                                                   "GMBA_V1_ID",
+                                                   "MapName",
+                                                   "WikiDataUR",
+                                                   "MapUnit",
+                                                   "Level",
+                                                   "Feature",
+                                                   "Area",
+                                                   "Perimeter",
+                                                   "Elev_Low",
+                                                   "Elev_High",
+                                                   "Path",
+                                                   "Level_01",
+                                                   "Level_02",
+                                                   "Level_03",
+                                                   "Level_04",
+                                                   "Level_05",
+                                                   "Level_06",
+                                                   "Level_07",
+                                                   "Level_08",
+                                                   "Level_09",
+                                                   "Level_10",
+                                                   "Select_300",
+                                                   "Countries",
+                                                   "WikiDataID",
+                                                   "DBaseName",
+                                                   "AsciiName",
+                                                   "Name_DE",
+                                                   "Name_ES",
+                                                   "Name_FR",
+                                                   "Name_PT",
+                                                   "Name_RU",
+                                                   "Name_TR",
+                                                   "Name_ZH")))]
+  at <- st_set_geometry(at, NULL)
+  return(at)
+}
+
 # function to get pre-selection of polygon ids
 # preselection options:
 # "100" = a selection for global analyses;

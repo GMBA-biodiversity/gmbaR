@@ -33,18 +33,16 @@
 #'  gmba_select()
 #' }
 
-gmba_select <- function() { # OVERLAP WARNING TO ADD
+gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
   # check if the inventory is read
   if(exists("gmba_inv") == FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
   }
   # function
-  # attribute meta objects
-  attributetable <- gmba_inv()[,c(2,3:35)] # ADJUST COLUMNS
-  attributetable <- st_set_geometry(attributetable, NULL)
+  # attribute objects
+  attributetable <- attributetable()
   attributes <- names(attributetable)
   ids <- attributetable$GMBA_V2_ID
-  # attribute vectors
   RangeNameD_lowercase <- tolower(attributetable$DBaseName)
   Countries_lowercase <- tolower(attributetable$Countries)
   # raw range selection
@@ -166,121 +164,125 @@ gmba_select <- function() { # OVERLAP WARNING TO ADD
     }
     # filter by IPCC regions
     if(filteroption == 4){
-      # based on doi.org/10.5194/essd-12-2959-2020
-      cat(paste("Enter one or more IPCC regions, separated by comma: \n1: Greenland/Iceland (GIC) \n2: N.W.North-America (NWN) \n3: N.E.North-America (NEN) \n4: W.North-America (WNA) \n5: C.North-America (CNA) \n6: E.North-America (ENA) \n7: N.Central-America (NCA) \n8: S.Central-America (SCA) \n9 or 10: Caribbean (CAR) \n11: N.W.South-America (NWS) \n12: N.South-America (NSA) \n13: N.E.South-America (NES) \n14: South-American-Monsoon (SAM) \n15: S.W.South-America (SWS) \n16: S.E.South-America (SES) \n17: S.South-America (SSA) \n18: N.Europe (NEU) \n19: Western&Central-Asia (WCE) \n20: E.Europe (EEU) \n21 or 22: Mediterranean (MED) \n23: Sahara (SAH) \n24: Western-Africa (WAF) \n25: Central-Africa (CAF) \n26: N.Eastern-Africa (NEAF) \n27: S.Eastern-Africa (SEAF) \n28: W.Southern-Africa (WSAF) \n29: E.Southern-Africa (ESAF) \n30: Madagascar (MDG) \n31: Russian-Arctic (RAR) \n32: W.Siberia (WSB) \n33: E.Siberia (ESB) \n34: Russian-Far-East (RFE) \n35: W.C.Asia (WCA) \n36: E.C.Asia (ECA) \n37: Tibetan-Planteau (TIB) \n38: E.Asia (EAS) \n39: Arabian-Peninsula (ARP) \n40: S.Asia (SAS) \n41 or 42: S.E.Asia (SEA) \n43: N.Australia (NAU) \n44: C.Australia (CAU) \n45: E.Australia (EAU) \n46: S.Australia (SAU) \n47: New-Zealand (NZ)", sep=""))
-      ipcc_input <- suppressWarnings(readline(prompt = paste("Input: ")))
-      if(ipcc_input == "stop"){stop("manual stop")}
-      ipcc_input <- gsub(" ", "", ipcc_input, fixed = TRUE)
-      ipcc_input <- as.numeric(unlist(strsplit(ipcc_input, ",")))
-      if(FALSE %in% (ipcc_input %in% c(1:47))){repeat{
-        ipcc_input <- suppressWarnings(readline(prompt = paste("The input must be within 1 to 47, separated by a comma. Input: ", sep="")))
-        if(ipcc_input == "stop"){stop("manual stop")}
-        ipcc_input <- as.numeric(unlist(strsplit(ipcc_input, ",")))
-        breaktest <- unique(ipcc_input %in% c(1:47))
-        if(!(FALSE %in% breaktest)){break}}} # readline test
-      country_input <- NA
-      ipcc_countries_1 <- c()
-      ipcc_countries_2 <- c()
-      ipcc_countries_3 <- c()
-      ipcc_countries_4 <- c()
-      ipcc_countries_5 <- c()
-      ipcc_countries_6 <- c()
-      ipcc_countries_7 <- c()
-      ipcc_countries_8 <- c()
-      ipcc_countries_9_10 <- c()
-      ipcc_countries_11 <- c()
-      ipcc_countries_12 <- c()
-      ipcc_countries_13 <- c()
-      ipcc_countries_14 <- c()
-      ipcc_countries_15 <- c()
-      ipcc_countries_16 <- c()
-      ipcc_countries_17 <- c()
-      ipcc_countries_18 <- c()
-      ipcc_countries_19 <- c()
-      ipcc_countries_20 <- c()
-      ipcc_countries_21_22 <- c()
-      ipcc_countries_23 <- c()
-      ipcc_countries_24 <- c()
-      ipcc_countries_25 <- c()
-      ipcc_countries_26 <- c()
-      ipcc_countries_27 <- c()
-      ipcc_countries_28 <- c()
-      ipcc_countries_29 <- c()
-      ipcc_countries_30 <- c()
-      ipcc_countries_31 <- c()
-      ipcc_countries_32 <- c()
-      ipcc_countries_33 <- c()
-      ipcc_countries_34 <- c()
-      ipcc_countries_35 <- c()
-      ipcc_countries_36 <- c()
-      ipcc_countries_37 <- c()
-      ipcc_countries_38 <- c()
-      ipcc_countries_39 <- c()
-      ipcc_countries_40 <- c()
-      ipcc_countries_41_42 <- c()
-      ipcc_countries_43 <- c()
-      ipcc_countries_44 <- c()
-      ipcc_countries_45 <- c()
-      ipcc_countries_46 <- c()
-      ipcc_countries_47 <- c()
-      for(r in ipcc_input){
-        if(r == 1){country_input <- c(country_input, ipcc_countries_1)}
-        if(r == 2){country_input <- c(country_input, ipcc_countries_2)}
-        if(r == 3){country_input <- c(country_input, ipcc_countries_3)}
-        if(r == 4){country_input <- c(country_input, ipcc_countries_4)}
-        if(r == 5){country_input <- c(country_input, ipcc_countries_5)}
-        if(r == 6){country_input <- c(country_input, ipcc_countries_6)}
-        if(r == 7){country_input <- c(country_input, ipcc_countries_7)}
-        if(r == 8){country_input <- c(country_input, ipcc_countries_8)}
-        if(r %in% c(9,10)){country_input <- c(country_input, ipcc_countries_9_10)}
-        if(r == 11){country_input <- c(country_input, ipcc_countries_11)}
-        if(r == 12){country_input <- c(country_input, ipcc_countries_12)}
-        if(r == 13){country_input <- c(country_input, ipcc_countries_13)}
-        if(r == 14){country_input <- c(country_input, ipcc_countries_14)}
-        if(r == 15){country_input <- c(country_input, ipcc_countries_15)}
-        if(r == 16){country_input <- c(country_input, ipcc_countries_16)}
-        if(r == 17){country_input <- c(country_input, ipcc_countries_17)}
-        if(r == 18){country_input <- c(country_input, ipcc_countries_18)}
-        if(r == 19){country_input <- c(country_input, ipcc_countries_19)}
-        if(r == 20){country_input <- c(country_input, ipcc_countries_20)}
-        if(r %in% c(21,22)){country_input <- c(country_input, ipcc_countries_21_22)}
-        if(r == 23){country_input <- c(country_input, ipcc_countries_23)}
-        if(r == 24){country_input <- c(country_input, ipcc_countries_24)}
-        if(r == 25){country_input <- c(country_input, ipcc_countries_25)}
-        if(r == 26){country_input <- c(country_input, ipcc_countries_26)}
-        if(r == 27){country_input <- c(country_input, ipcc_countries_27)}
-        if(r == 28){country_input <- c(country_input, ipcc_countries_28)}
-        if(r == 29){country_input <- c(country_input, ipcc_countries_29)}
-        if(r == 30){country_input <- c(country_input, ipcc_countries_30)}
-        if(r == 31){country_input <- c(country_input, ipcc_countries_31)}
-        if(r == 32){country_input <- c(country_input, ipcc_countries_32)}
-        if(r == 33){country_input <- c(country_input, ipcc_countries_33)}
-        if(r == 34){country_input <- c(country_input, ipcc_countries_34)}
-        if(r == 35){country_input <- c(country_input, ipcc_countries_35)}
-        if(r == 36){country_input <- c(country_input, ipcc_countries_36)}
-        if(r == 37){country_input <- c(country_input, ipcc_countries_37)}
-        if(r == 38){country_input <- c(country_input, ipcc_countries_38)}
-        if(r == 39){country_input <- c(country_input, ipcc_countries_39)}
-        if(r == 40){country_input <- c(country_input, ipcc_countries_40)}
-        if(r %in% c(41,42)){country_input <- c(country_input, ipcc_countries_41_42)}
-        if(r == 43){country_input <- c(country_input, ipcc_countries_43)}
-        if(r == 44){country_input <- c(country_input, ipcc_countries_44)}
-        if(r == 45){country_input <- c(country_input, ipcc_countries_45)}
-        if(r == 46){country_input <- c(country_input, ipcc_countries_46)}
-        if(r == 47){country_input <- c(country_input, ipcc_countries_47)}
-        }
-      country_input <- unique(country_input)
-      if("NA" %in% country_input){country_input <- country_input[-which(country_input == "NA")]}
-      country_input <- country_input[-which(is.na(country_input))]
-      ranges <- NA
-      for(iso in 1:length(country_input)){
-        rangesloop <- attributetable[which(grepl(country_input[iso], Countries_lowercase)), which(attributes == "GMBA_V2_ID")]
-        ranges <- c(ranges, rangesloop)
-      }
-      ranges <- unique(ranges)
-      ranges <- ranges[-which(is.na(ranges))]
-      rangeselection <- rangeselection[which(rangeselection %in% ranges)]
-      print(attributetable[which(ids %in% rangeselection), which(attributes == "DBaseName")])
+
+      warning("The IPCC filter option is not implemented yet.")
+      #
+      # # based on doi.org/10.5194/essd-12-2959-2020
+      # cat(paste("Enter one or more IPCC regions, separated by comma: \n1: Greenland/Iceland (GIC) \n2: N.W.North-America (NWN) \n3: N.E.North-America (NEN) \n4: W.North-America (WNA) \n5: C.North-America (CNA) \n6: E.North-America (ENA) \n7: N.Central-America (NCA) \n8: S.Central-America (SCA) \n9 or 10: Caribbean (CAR) \n11: N.W.South-America (NWS) \n12: N.South-America (NSA) \n13: N.E.South-America (NES) \n14: South-American-Monsoon (SAM) \n15: S.W.South-America (SWS) \n16: S.E.South-America (SES) \n17: S.South-America (SSA) \n18: N.Europe (NEU) \n19: Western&Central-Asia (WCE) \n20: E.Europe (EEU) \n21 or 22: Mediterranean (MED) \n23: Sahara (SAH) \n24: Western-Africa (WAF) \n25: Central-Africa (CAF) \n26: N.Eastern-Africa (NEAF) \n27: S.Eastern-Africa (SEAF) \n28: W.Southern-Africa (WSAF) \n29: E.Southern-Africa (ESAF) \n30: Madagascar (MDG) \n31: Russian-Arctic (RAR) \n32: W.Siberia (WSB) \n33: E.Siberia (ESB) \n34: Russian-Far-East (RFE) \n35: W.C.Asia (WCA) \n36: E.C.Asia (ECA) \n37: Tibetan-Planteau (TIB) \n38: E.Asia (EAS) \n39: Arabian-Peninsula (ARP) \n40: S.Asia (SAS) \n41 or 42: S.E.Asia (SEA) \n43: N.Australia (NAU) \n44: C.Australia (CAU) \n45: E.Australia (EAU) \n46: S.Australia (SAU) \n47: New-Zealand (NZ)", sep=""))
+      # ipcc_input <- suppressWarnings(readline(prompt = paste("Input: ")))
+      # if(ipcc_input == "stop"){stop("manual stop")}
+      # ipcc_input <- gsub(" ", "", ipcc_input, fixed = TRUE)
+      # ipcc_input <- as.numeric(unlist(strsplit(ipcc_input, ",")))
+      # if(FALSE %in% (ipcc_input %in% c(1:47))){repeat{
+      #   ipcc_input <- suppressWarnings(readline(prompt = paste("The input must be within 1 to 47, separated by a comma. Input: ", sep="")))
+      #   if(ipcc_input == "stop"){stop("manual stop")}
+      #   ipcc_input <- as.numeric(unlist(strsplit(ipcc_input, ",")))
+      #   breaktest <- unique(ipcc_input %in% c(1:47))
+      #   if(!(FALSE %in% breaktest)){break}}} # readline test
+      # country_input <- NA
+      # ipcc_countries_1 <- c()
+      # ipcc_countries_2 <- c()
+      # ipcc_countries_3 <- c()
+      # ipcc_countries_4 <- c()
+      # ipcc_countries_5 <- c()
+      # ipcc_countries_6 <- c()
+      # ipcc_countries_7 <- c()
+      # ipcc_countries_8 <- c()
+      # ipcc_countries_9_10 <- c()
+      # ipcc_countries_11 <- c()
+      # ipcc_countries_12 <- c()
+      # ipcc_countries_13 <- c()
+      # ipcc_countries_14 <- c()
+      # ipcc_countries_15 <- c()
+      # ipcc_countries_16 <- c()
+      # ipcc_countries_17 <- c()
+      # ipcc_countries_18 <- c()
+      # ipcc_countries_19 <- c()
+      # ipcc_countries_20 <- c()
+      # ipcc_countries_21_22 <- c()
+      # ipcc_countries_23 <- c()
+      # ipcc_countries_24 <- c()
+      # ipcc_countries_25 <- c()
+      # ipcc_countries_26 <- c()
+      # ipcc_countries_27 <- c()
+      # ipcc_countries_28 <- c()
+      # ipcc_countries_29 <- c()
+      # ipcc_countries_30 <- c()
+      # ipcc_countries_31 <- c()
+      # ipcc_countries_32 <- c()
+      # ipcc_countries_33 <- c()
+      # ipcc_countries_34 <- c()
+      # ipcc_countries_35 <- c()
+      # ipcc_countries_36 <- c()
+      # ipcc_countries_37 <- c()
+      # ipcc_countries_38 <- c()
+      # ipcc_countries_39 <- c()
+      # ipcc_countries_40 <- c()
+      # ipcc_countries_41_42 <- c()
+      # ipcc_countries_43 <- c()
+      # ipcc_countries_44 <- c()
+      # ipcc_countries_45 <- c()
+      # ipcc_countries_46 <- c()
+      # ipcc_countries_47 <- c()
+      # for(r in ipcc_input){
+      #   if(r == 1){country_input <- c(country_input, ipcc_countries_1)}
+      #   if(r == 2){country_input <- c(country_input, ipcc_countries_2)}
+      #   if(r == 3){country_input <- c(country_input, ipcc_countries_3)}
+      #   if(r == 4){country_input <- c(country_input, ipcc_countries_4)}
+      #   if(r == 5){country_input <- c(country_input, ipcc_countries_5)}
+      #   if(r == 6){country_input <- c(country_input, ipcc_countries_6)}
+      #   if(r == 7){country_input <- c(country_input, ipcc_countries_7)}
+      #   if(r == 8){country_input <- c(country_input, ipcc_countries_8)}
+      #   if(r %in% c(9,10)){country_input <- c(country_input, ipcc_countries_9_10)}
+      #   if(r == 11){country_input <- c(country_input, ipcc_countries_11)}
+      #   if(r == 12){country_input <- c(country_input, ipcc_countries_12)}
+      #   if(r == 13){country_input <- c(country_input, ipcc_countries_13)}
+      #   if(r == 14){country_input <- c(country_input, ipcc_countries_14)}
+      #   if(r == 15){country_input <- c(country_input, ipcc_countries_15)}
+      #   if(r == 16){country_input <- c(country_input, ipcc_countries_16)}
+      #   if(r == 17){country_input <- c(country_input, ipcc_countries_17)}
+      #   if(r == 18){country_input <- c(country_input, ipcc_countries_18)}
+      #   if(r == 19){country_input <- c(country_input, ipcc_countries_19)}
+      #   if(r == 20){country_input <- c(country_input, ipcc_countries_20)}
+      #   if(r %in% c(21,22)){country_input <- c(country_input, ipcc_countries_21_22)}
+      #   if(r == 23){country_input <- c(country_input, ipcc_countries_23)}
+      #   if(r == 24){country_input <- c(country_input, ipcc_countries_24)}
+      #   if(r == 25){country_input <- c(country_input, ipcc_countries_25)}
+      #   if(r == 26){country_input <- c(country_input, ipcc_countries_26)}
+      #   if(r == 27){country_input <- c(country_input, ipcc_countries_27)}
+      #   if(r == 28){country_input <- c(country_input, ipcc_countries_28)}
+      #   if(r == 29){country_input <- c(country_input, ipcc_countries_29)}
+      #   if(r == 30){country_input <- c(country_input, ipcc_countries_30)}
+      #   if(r == 31){country_input <- c(country_input, ipcc_countries_31)}
+      #   if(r == 32){country_input <- c(country_input, ipcc_countries_32)}
+      #   if(r == 33){country_input <- c(country_input, ipcc_countries_33)}
+      #   if(r == 34){country_input <- c(country_input, ipcc_countries_34)}
+      #   if(r == 35){country_input <- c(country_input, ipcc_countries_35)}
+      #   if(r == 36){country_input <- c(country_input, ipcc_countries_36)}
+      #   if(r == 37){country_input <- c(country_input, ipcc_countries_37)}
+      #   if(r == 38){country_input <- c(country_input, ipcc_countries_38)}
+      #   if(r == 39){country_input <- c(country_input, ipcc_countries_39)}
+      #   if(r == 40){country_input <- c(country_input, ipcc_countries_40)}
+      #   if(r %in% c(41,42)){country_input <- c(country_input, ipcc_countries_41_42)}
+      #   if(r == 43){country_input <- c(country_input, ipcc_countries_43)}
+      #   if(r == 44){country_input <- c(country_input, ipcc_countries_44)}
+      #   if(r == 45){country_input <- c(country_input, ipcc_countries_45)}
+      #   if(r == 46){country_input <- c(country_input, ipcc_countries_46)}
+      #   if(r == 47){country_input <- c(country_input, ipcc_countries_47)}
+      #   }
+      # country_input <- unique(country_input)
+      # if("NA" %in% country_input){country_input <- country_input[-which(country_input == "NA")]}
+      # country_input <- country_input[-which(is.na(country_input))]
+      # ranges <- NA
+      # for(iso in 1:length(country_input)){
+      #   rangesloop <- attributetable[which(grepl(country_input[iso], Countries_lowercase)), which(attributes == "GMBA_V2_ID")]
+      #   ranges <- c(ranges, rangesloop)
+      # }
+      # ranges <- unique(ranges)
+      # ranges <- ranges[-which(is.na(ranges))]
+      # rangeselection <- rangeselection[which(rangeselection %in% ranges)]
+      # print(attributetable[which(ids %in% rangeselection), which(attributes == "DBaseName")])
+
     }
     # return to loop question
     continue <- suppressWarnings(readline(prompt = paste("Continue filtering? Yes or no: ")))

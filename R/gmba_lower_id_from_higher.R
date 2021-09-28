@@ -32,9 +32,8 @@ gmba_lower_id_from_higher <- function(rangeid, lowerlevel_numeric, method){
   }
   # function
   method <- match.arg(method, c("parent", "steps"))
-  # attribute meta objects
-  attributetable <- gmba_inv()[,c(2,3:35)] # ADJUST COLUMNS
-  attributetable <- st_set_geometry(attributetable, NULL)
+  # attribute objects
+  attributetable <- attributetable()
   attributes <- names(attributetable)
   ids <- attributetable$GMBA_V2_ID
   # method = parent
