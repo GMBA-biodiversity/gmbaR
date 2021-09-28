@@ -31,7 +31,7 @@
 #' }
 
 gmba_ids_from_points <- function(xy_dataframe, range_selection, manual = NULL){
-  range_selection <- match.arg(range_selection, c("all", "basic", "100", "300",
+  range_selection <- match.arg(range_selection, c("all", "basic", "300", "100",
                                                   "level1", "level2", "level3", "level4", "level5",
                                                   "level6", "level7", "level8", "level9", "level10",
                                                   "manual"))
@@ -42,11 +42,11 @@ gmba_ids_from_points <- function(xy_dataframe, range_selection, manual = NULL){
     if(range_selection == "basic"){
       polygons <- gmba_inv()[which(gmba_inv()$MapUnit == "Basic"),]
     } else
-      if(range_selection == "100"){
-        polygons <- gmba_inv()[which(gmba_inv()$GMBA_V2_ID %in% gmba_ids_from_preselection("100")),]
+      if(range_selection == "300"){
+        polygons <- gmba_inv()[which(gmba_inv()$GMBA_V2_ID %in% gmba_ids_from_preselection("300")),]
       } else
-        if(range_selection == "300"){
-          polygons <- gmba_inv()[which(gmba_inv()$GMBA_V2_ID %in% gmba_ids_from_preselection("300")),]
+        if(range_selection == "100"){
+          polygons <- gmba_inv()[which(gmba_inv()$GMBA_V2_ID %in% gmba_ids_from_preselection("100")),]
         } else
           if(range_selection == "level1"){
             polygons <- gmba_inv()[which(gmba_inv()$Level == 1),]

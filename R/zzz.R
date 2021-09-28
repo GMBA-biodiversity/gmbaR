@@ -55,10 +55,13 @@ attributetable <- function(){
 
 # function to get pre-selection of polygon ids
 # preselection options:
-# "100" = a selection for global analyses;
-# "300" = a selection for global or IPBES/IPCC regional level analyses
+# "300" = a selection for global or IPBES/IPCC regional level analyses (proposed by M. Snethlage)
+# "100" = a selection for global analyses (proposed by J. Geschke);
 gmba_ids_from_preselection <- function(preselection){
-  preselection <- match.arg(preselection, c("100", "300"))
+  preselection <- match.arg(preselection, c("300", "100"))
+  if(preselection == "300"){
+    preselection <- gmba_inv()$GMBA_V2_ID[which(gmba_inv()$Select_300 == "x")]
+  }
   if(preselection == "100"){
     preselection <- gmba_inv()$GMBA_V2_ID[which(gmba_inv()$GMBA_V2_ID %in%
                                                   c(14458, 13127, 12149, 12171, 11328, 14260, 18512, 12170, 10076, 15591,
@@ -71,12 +74,8 @@ gmba_ids_from_preselection <- function(preselection){
                                                     14131, 12535, 12506, 21038, 12541, 12686, 12307, 12542, 15783, 12543,
                                                     21019, 12385, 12105, 11134, 12497, 12390, 12551, 12189, 11983, 12532,
                                                     12122, 12123, 12121, 12147, 14220, 14221, 14239, 12142, 14218, 14219))]
-    return(preselection)
   }
-  if(preselection == "300"){
-    preselection <- gmba_inv()$GMBA_V2_ID[which(gmba_inv()$Select_300 == "x")]
-    return(preselection)
-  }
+  return(preselection)
 }
 
 # function to create color transparency (e.g. for maps)
