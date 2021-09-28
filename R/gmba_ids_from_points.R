@@ -7,9 +7,9 @@
 #' @param range_selection Character string, the options are:
 #' \itemize{
 #' \item{\emph{"all"} = all level ranges, cross-scale (returns lists of ids!)}
-#' \item{\emph{"basic"} = basic mountain ranges only}
-#' \item{\emph{"100"} = ranges included in the 100 pre-selection}
+#' \item{\emph{"basic"} = basic mountain ranges only (default)}
 #' \item{\emph{"300"} = ranges included in the 300 pre-selection}
+#' \item{\emph{"100"} = ranges included in the 100 pre-selection}
 #' \item{\emph{"level1"}-\emph{"level10"} = ranges pertaining to the respective level
 #' of the inventory hierarchy}
 #' \item{\emph{"manual"} = range IDs provided with \code{manual}}}
@@ -30,12 +30,12 @@
 #'                                        gmba_ids_from_names(c("Black Forest", "European Alps")))
 #' }
 
-gmba_ids_from_points <- function(xy_dataframe, range_selection, manual = NULL){
+gmba_ids_from_points <- function(xy_dataframe,
+                                 range_selection = "basic", manual = NULL){
   range_selection <- match.arg(range_selection, c("all", "basic", "300", "100",
                                                   "level1", "level2", "level3", "level4", "level5",
                                                   "level6", "level7", "level8", "level9", "level10",
                                                   "manual"))
-  points <- xy_dataframe
   if(range_selection == "all"){
     polygons <- gmba_inv()
   } else
@@ -84,6 +84,7 @@ gmba_ids_from_points <- function(xy_dataframe, range_selection, manual = NULL){
     }
     polygons <- gmba_subset(manual)
   }
+  points <- xy_dataframe
   coordinates <- do.call("st_sfc",c(lapply(1:nrow(xy_dataframe),
                                            function(i) {st_point(as.numeric(xy_dataframe[i,]))}), list("crs" = 4326)))
   points$polygons <- apply(st_intersects(polygons, coordinates, sparse = FALSE), 2,

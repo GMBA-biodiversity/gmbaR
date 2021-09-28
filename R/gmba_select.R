@@ -39,13 +39,11 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
   }
   # function
   # attribute objects
-  attributetable <- attributetable()
-  attributes <- names(attributetable)
-  ids <- attributetable$GMBA_V2_ID
-  RangeNameD_lowercase <- tolower(attributetable$DBaseName)
-  Countries_lowercase <- tolower(attributetable$Countries)
+  inv_ids <- attributetable()$GMBA_V2_ID
+  inv_names <- tolower(attributetable()$DBaseName)
+  inv_countries <- tolower(attributetable()$Countries)
   # raw range selection
-  rangeselection <- attributetable$GMBA_V2_ID
+  rangeselection <- inv_ids
   # initial selection tool information
   cat(paste("First, you are given four options to filter the GMBA Inventory v2.0. After filtering, you can select all or individual ranges from the filter. A 'stop' as response to each question stops the function from running.\n\n", sep=""))
   # filter loop
@@ -64,10 +62,10 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       name_input <- suppressWarnings(readline(prompt = paste("Enter (part of) a mountain range name: ")))
       if(name_input == "stop"){stop("manual stop")}
       name_input <- tolower(name_input)
-      ranges <- attributetable[which(grepl(name_input, RangeNameD_lowercase)), which(attributes == "GMBA_V2_ID")]
+      ranges <- attributetable()[which(grepl(name_input, inv_names)), which(names(attributetable()) == "GMBA_V2_ID")]
 
       rangeselection <- rangeselection[which(rangeselection %in% ranges)]
-      print(attributetable[which(ids %in% rangeselection), which(attributes == "DBaseName")])
+      print(attributetable()[which(inv_ids %in% rangeselection), which(names(attributetable()) == "DBaseName")])
     }
     # filter by country
     if(filteroption == 2){
@@ -83,7 +81,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
         if(sum(unique(nchar(country_input))) == 3){break}}} # readline test
       ranges <- NA
       for(iso in 1:length(country_input)){
-        rangesloop <- attributetable[which(grepl(country_input[iso], Countries_lowercase)), which(attributes == "GMBA_V2_ID")]
+        rangesloop <- attributetable()[which(grepl(country_input[iso], inv_countries)), which(names(attributetable()) == "GMBA_V2_ID")]
         ranges <- c(ranges, rangesloop)
       }
       ranges <- unique(ranges)
@@ -93,7 +91,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
                 immediate. = TRUE)
       } else {
         rangeselection <- rangeselection[which(rangeselection %in% ranges)]
-        print(attributetable[which(ids %in% rangeselection), which(attributes == "DBaseName")])
+        print(attributetable()[which(inv_ids %in% rangeselection), which(names(attributetable()) == "DBaseName")])
       }
     }
     # filter by IPBES (sub) regions
@@ -160,13 +158,13 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       country_input <- country_input[-which(is.na(country_input))]
       ranges <- NA
       for(iso in 1:length(country_input)){
-        rangesloop <- attributetable[which(grepl(country_input[iso], Countries_lowercase)), which(attributes == "GMBA_V2_ID")]
+        rangesloop <- attributetable()[which(grepl(country_input[iso], inv_countries)), which(names(attributetable()) == "GMBA_V2_ID")]
         ranges <- c(ranges, rangesloop)
       }
       ranges <- unique(ranges)
       ranges <- ranges[-which(is.na(ranges))]
       rangeselection <- rangeselection[which(rangeselection %in% ranges)]
-      print(attributetable[which(ids %in% rangeselection), which(attributes == "DBaseName")])
+      print(attributetable()[which(inv_ids %in% rangeselection), which(names(attributetable()) == "DBaseName")])
     }
     # filter by IPCC regions
     if(filteroption == 4){
@@ -282,13 +280,13 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       # country_input <- country_input[-which(is.na(country_input))]
       # ranges <- NA
       # for(iso in 1:length(country_input)){
-      #   rangesloop <- attributetable[which(grepl(country_input[iso], Countries_lowercase)), which(attributes == "GMBA_V2_ID")]
+      #   rangesloop <- attributetable()[which(grepl(country_input[iso], inv_countries)), which(names(attributetable()) == "GMBA_V2_ID")]
       #   ranges <- c(ranges, rangesloop)
       # }
       # ranges <- unique(ranges)
       # ranges <- ranges[-which(is.na(ranges))]
       # rangeselection <- rangeselection[which(rangeselection %in% ranges)]
-      # print(attributetable[which(ids %in% rangeselection), which(attributes == "DBaseName")])
+      # print(attributetable()[which(inv_ids %in% rangeselection), which(names(attributetable()) == "DBaseName")])
 
     }
     # return to loop question
@@ -328,7 +326,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       if(!(FALSE %in% breaktest)){break}}} # readline test
     rangeselection <- rangeselection[numbers_input]
     cat(paste("Selected mountain ranges:\n", sep=""))
-    print(attributetable[which(ids %in% rangeselection), which(attributes == "DBaseName")])
+    print(attributetable()[which(inv_ids %in% rangeselection), which(names(attributetable()) == "DBaseName")])
 
   }
   # output format
@@ -343,11 +341,11 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
     if(formatoption %in% c(1:3)){break}}} # readline test
   # mountain range polygons
   if(formatoption == 1){
-    output <- gmba_inv()[which(ids %in% rangeselection),]
+    output <- gmba_inv()[which(inv_ids %in% rangeselection),]
   }
   # mountain range map names
   if(formatoption == 2){
-    output <- attributetable[which(ids %in% rangeselection), which(attributes == "MapName")]
+    output <- attributetable()[which(inv_ids %in% rangeselection), which(names(attributetable()) == "MapName")]
   }
   # GMBA Inventory v2 IDs
   if(formatoption == 3){

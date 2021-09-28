@@ -31,32 +31,29 @@ gmba_lower_id_from_higher <- function(rangeid, lowerlevel_numeric, method){
   }
   # function
   method <- match.arg(method, c("parent", "steps"))
-  # attribute objects
-  attributetable <- attributetable()
-  attributes <- names(attributetable)
-  ids <- attributetable$GMBA_V2_ID
+  inv_ids <- attributetable()$GMBA_V2_ID
   # method = parent
   if(method == "parent"){
     # identify parent range path and id
-    r <- which(ids == as.character(rangeid))
-    c <- which(attributes == "Path")
-    rangepath <- attributetable[r,c]
+    r <- which(inv_ids == as.character(rangeid))
+    c <- which(names(attributetable()) == "Path")
+    rangepath <- attributetable()[r,c]
     parentrangepath <- paste(unlist(strsplit(rangepath, " > "))[c(1:lowerlevel_numeric)], collapse = " > ")
-    r <- which(attributetable$Path == parentrangepath)
-    c <- which(attributes == "GMBA_V2_ID")
-    lowerlevel <- attributetable[r,c]
+    r <- which(attributetable()$Path == parentrangepath)
+    c <- which(names(attributetable()) == "GMBA_V2_ID")
+    lowerlevel <- attributetable()[r,c]
     return(lowerlevel)
   }
   # method = steps
   if(method == "steps"){
     if(lowerlevel_numeric > 0){
       # identify lower level
-      r <- which(ids == as.character(rangeid))
+      r <- which(inv_ids == as.character(rangeid))
       c <- which(attributes == "Path")
-      rangepath <- attributetable[r,c]
+      rangepath <- attributetable()[r,c]
       levels <- strsplit(rangepath, split = " > ", fixed = TRUE)
       levels <- levels[[1]]
-      lowerlevel <- which(levels == attributetable$DBaseName[r])-lowerlevel_numeric
+      lowerlevel <- which(levels == attributetable()$DBaseName[r])-lowerlevel_numeric
       if(lowerlevel > 0){
         # dissolve lower level
         lowerlevel <- levels[lowerlevel]

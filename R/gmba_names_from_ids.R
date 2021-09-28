@@ -20,9 +20,9 @@ gmba_names_from_ids <- function(rangeid_vector){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
   }
   # function
-  gmba_inventory_names <- as.character(gmba_inv()$DBaseName)
-  gmba_inventory_ids <- as.character(gmba_inv()$GMBA_V2_ID)
-  rangenames <- gmba_inventory_names[match(rangeid_vector, gmba_inventory_ids)]
+  inv_names <- as.character(gmba_inv()$DBaseName)
+  inv_ids <- as.character(gmba_inv()$GMBA_V2_ID)
+  rangenames <- inv_names[match(rangeid_vector, inv_ids)]
   names(rangenames) <- rangeid_vector
   return(rangenames)
 }

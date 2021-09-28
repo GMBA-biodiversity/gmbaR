@@ -20,8 +20,8 @@
 
 gmba_ids_from_country <- function(iso){
   attributes <- names(attributetable())
-  countries <- attributetable()$Countries
-  countries <- tolower(countries)
+  inv_countries <- attributetable()$Countries
+  inv_countries <- tolower(inv_countries)
   iso <- gsub(" ", "", iso, fixed = TRUE)
   iso <- tolower(unlist(strsplit(iso, ",")))
   if(sum(unique(nchar(iso))) != 3){
@@ -29,7 +29,7 @@ gmba_ids_from_country <- function(iso){
   }
   ranges <- NA
   for(i in 1:length(iso)){
-    rangesloop <- attributetable()[which(grepl(iso[i], countries)), which(attributes == "GMBA_V2_ID")]
+    rangesloop <- attributetable()[which(grepl(iso[i], inv_countries)), which(attributes == "GMBA_V2_ID")]
     ranges <- c(ranges, rangesloop)
   }
   ranges <- unique(ranges)
