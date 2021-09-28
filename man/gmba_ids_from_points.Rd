@@ -4,7 +4,7 @@
 \alias{gmba_ids_from_points}
 \title{Get mountain range IDs from points coordinates}
 \usage{
-gmba_ids_from_points(xy_dataframe, range_selection, manual = NULL)
+gmba_ids_from_points(xy_dataframe, range_selection = "basic", manual = NULL)
 }
 \arguments{
 \item{xy_dataframe}{A dataframe containing point coordinates,
@@ -13,9 +13,9 @@ with columns "x" and "y" i.e. longitude and latitude}
 \item{range_selection}{Character string, the options are:
 \itemize{
 \item{\emph{"all"} = all level ranges, cross-scale (returns lists of ids!)}
-\item{\emph{"basic"} = basic mountain ranges only}
-\item{\emph{"100"} = ranges included in the 100 pre-selection}
+\item{\emph{"basic"} = basic mountain ranges only (default)}
 \item{\emph{"300"} = ranges included in the 300 pre-selection}
+\item{\emph{"100"} = ranges included in the 100 pre-selection}
 \item{\emph{"level1"}-\emph{"level10"} = ranges pertaining to the respective level
 of the inventory hierarchy}
 \item{\emph{"manual"} = range IDs provided with \code{manual}}}}

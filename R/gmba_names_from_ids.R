@@ -15,14 +15,21 @@
 #' }
 
 gmba_names_from_ids <- function(rangeid_vector){
-  # check if the inventory is read
+
+  ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
   }
-  # function
+
+  ##### set attributes
   inv_names <- as.character(gmba_inv()$DBaseName)
   inv_ids <- as.character(gmba_inv()$GMBA_V2_ID)
-  rangenames <- inv_names[match(rangeid_vector, inv_ids)]
-  names(rangenames) <- rangeid_vector
-  return(rangenames)
+
+  ##### run function
+  output <- inv_names[match(rangeid_vector, inv_ids)]
+  names(output) <- rangeid_vector
+
+  ##### return output
+  return(output)
+
 }

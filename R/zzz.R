@@ -15,7 +15,9 @@
 
 # function to retrieve the attribute table from gmba_inv()
 attributetable <- function(){
-  at <- gmba_inv()[,c(which(names(gmba_inv()) %in% c("GMBA_V2_ID",
+
+  ##### run function
+  output <- gmba_inv()[,c(which(names(gmba_inv()) %in% c("GMBA_V2_ID",
                                                    "GMBA_V1_ID",
                                                    "MapName",
                                                    "WikiDataUR",
@@ -49,8 +51,11 @@ attributetable <- function(){
                                                    "Name_RU",
                                                    "Name_TR",
                                                    "Name_ZH")))]
-  at <- st_set_geometry(at, NULL)
-  return(at)
+  output <- st_set_geometry(output, NULL)
+
+  ##### return output
+  return(output)
+
 }
 
 # function to get pre-selection of polygon ids
@@ -58,12 +63,16 @@ attributetable <- function(){
 # "300" = a selection for global or IPBES/IPCC regional level analyses (proposed by M. Snethlage)
 # "100" = a selection for global analyses (proposed by J. Geschke);
 gmba_ids_from_preselection <- function(preselection){
+
+  ##### check arguments
   preselection <- match.arg(preselection, c("300", "100"))
+
+  ##### run function
   if(preselection == "300"){
-    preselection <- gmba_inv()$GMBA_V2_ID[which(gmba_inv()$Select_300 == "x")]
+    output <- gmba_inv()$GMBA_V2_ID[which(gmba_inv()$Select_300 == "x")]
   }
   if(preselection == "100"){
-    preselection <- gmba_inv()$GMBA_V2_ID[which(gmba_inv()$GMBA_V2_ID %in%
+    output <- gmba_inv()$GMBA_V2_ID[which(gmba_inv()$GMBA_V2_ID %in%
                                                   c(14458, 13127, 12149, 12171, 11328, 14260, 18512, 12170, 10076, 15591,
                                                     18573, 12165, 11744, 12275, 18442, 18171, 11419, 12409, 13907, 12031,
                                                     13075, 11400, 11401, 11464, 11703, 12174, 11997, 12508, 12260, 12507,
@@ -75,7 +84,10 @@ gmba_ids_from_preselection <- function(preselection){
                                                     21019, 12385, 12105, 11134, 12497, 12390, 12551, 12189, 11983, 12532,
                                                     12122, 12123, 12121, 12147, 14220, 14221, 14239, 12142, 14218, 14219))]
   }
-  return(preselection)
+
+  ##### return output
+  return(output)
+
 }
 
 # function to create color transparency (e.g. for maps)

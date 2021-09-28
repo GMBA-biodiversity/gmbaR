@@ -13,28 +13,39 @@
 #'
 #' @examples
 #' \dontrun{
-#' selection <- gmba_ids_from_selectiontool("Selection_Tool_v20210423.xlsx")
-#' selection_overlapping <- gmba_ids_from_selectiontool("Selection_Tool_v20210423.xlsx",
+#' selection <- gmba_ids_from_selectiontool("Selection_Tool.xlsx")
+#' selection_overlapping <- gmba_ids_from_selectiontool("Selection_Tool.xlsx",
 #'                                                      overlap = TRUE)
 #' }
 
 gmba_ids_from_selectiontool <- function(local, overlap = FALSE){
-  gmba_inventory_v_2_0_selectiontool <- read.xlsx(local, sheet = 1)
-  names(gmba_inventory_v_2_0_selectiontool)[c(7:16)] <- paste("Level", c(1:10), sep = "")
-  gmba_inventory_v_2_0_selectiontool$GMBA_V2_ID <- as.character(gmba_inventory_v_2_0_selectiontool$GMBA_V2_ID)
 
-  gmba_inventory_ids <- gmba_inventory_v_2_0_selectiontool$GMBA_V2_ID
+  ##### check if the inventory is read
+  if(exists("gmba_inv") == FALSE){
+    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
+  }
+
+  ##### set attributes
+  inv_ids <- gmba_inv()$GMBA_V2_ID
+
+  ##### run function
+  selectiontool <- read.xlsx(local, sheet = 1)
+  names(selectiontool)[c(7:16)] <- paste("Level", c(1:10), sep = "") ### CHECK COLUMNS
+  selectiontool$GMBA_V2_ID <- as.character(selectiontool$GMBA_V2_ID)
+
   if(overlap == FALSE){
-    selected_ids <- gmba_inventory_ids[!is.na(gmba_inventory_v_2_0_selectiontool$Range_Selector)]
-    return(selected_ids)
+    output <- inv_ids[!is.na(selectiontool$Range_Selector)]
   }
   if(overlap == TRUE){
-    overlapping <- which(gmba_inventory_v_2_0_selectiontool$Overlap_Warning == "polygons overlap!")
+    overlapping <- which(selectiontool$Overlap_Warning == "polygons overlap!")
     if(length(overlapping) == 0){
       stop("There are no overlapping polygons selected in the Selection Tool.")}
     else {
-      selected_ids <- gmba_inventory_ids[overlapping]
-      return(selected_ids)
+      output <- inv_ids[overlapping]
     }
   }
+
+  ##### return output
+  return(output)
+
 }

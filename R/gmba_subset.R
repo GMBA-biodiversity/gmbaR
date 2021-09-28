@@ -15,11 +15,16 @@
 #' }
 
 gmba_subset <- function(rangeid_vector){
-  # check if the inventory is read
+
+  ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
   }
-  # function
-  subset <- gmba_inv()[which(gmba_inv()$GMBA_V2_ID %in% rangeid_vector),]
-  return(subset)
+
+  ##### run function
+  r <- which(gmba_inv()$GMBA_V2_ID %in% rangeid_vector)
+  output <- gmba_inv()[r,]
+
+  ##### return output
+  return(output)
 }

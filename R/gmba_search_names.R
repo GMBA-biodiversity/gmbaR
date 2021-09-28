@@ -36,92 +36,47 @@
 #' }
 
 gmba_search_names <- function(part_of_rangename, language = "EN", db = FALSE){
-  # check if the inventory is read
+
+  ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
   }
-  # function
+
+  ##### check arguments
   language <- match.arg(language, c("EN", "DE", "ES", "FR", "PT", "RU", "TR", "ZH"))
+
+  ##### run functions
   name_vector_lowercase <- tolower(part_of_rangename)
-  if(language == "EN"){
-    inv_names <- as.character(gmba_inv()$DBaseName)
-  }
-  if(language == "DE"){
-    inv_names <- as.character(gmba_inv()$Name_DE)
-    inv_names <- inv_names[-which(is.na(inv_names))]
-  }
-  if(language == "ES"){
-    inv_names <- as.character(gmba_inv()$Name_ES)
-    inv_names <- inv_names[-which(is.na(inv_names))]
-  }
-  if(language == "FR"){
-    inv_names <- as.character(gmba_inv()$Name_FR)
-    inv_names <- inv_names[-which(is.na(inv_names))]
-  }
-  if(language == "PT"){
-    inv_names <- as.character(gmba_inv()$Name_PT)
-    inv_names <- inv_names[-which(is.na(inv_names))]
-  }
-  if(language == "RU"){
-    inv_names <- as.character(gmba_inv()$Name_RU)
-    inv_names <- inv_names[-which(is.na(inv_names))]
-  }
-  if(language == "TR"){
-    inv_names <- as.character(gmba_inv()$Name_TR)
-    inv_names <- inv_names[-which(is.na(inv_names))]
-  }
-  if(language == "ZH"){
-    inv_names <- as.character(gmba_inv()$Name_ZH)
-    inv_names <- inv_names[-which(is.na(inv_names))]
-  }
+  if(language == "EN"){inv_names <- as.character(gmba_inv()$DBaseName)}
+  if(language == "DE"){inv_names <- as.character(gmba_inv()$Name_DE)}
+  if(language == "ES"){inv_names <- as.character(gmba_inv()$Name_ES)}
+  if(language == "FR"){inv_names <- as.character(gmba_inv()$Name_FR)}
+  if(language == "PT"){inv_names <- as.character(gmba_inv()$Name_PT)}
+  if(language == "RU"){inv_names <- as.character(gmba_inv()$Name_RU)}
+  if(language == "TR"){inv_names <- as.character(gmba_inv()$Name_TR)}
+  if(language == "ZH"){inv_names <- as.character(gmba_inv()$Name_ZH)}
+  if(language != "EN"){inv_names <- inv_names[-which(is.na(inv_names))]}
   inv_names_lowercase <- tolower(inv_names)
   rangenames <- inv_names[which(grepl(name_vector_lowercase, inv_names_lowercase))]
+
   if(language != "EN"){
     if(!(db %in% c(FALSE, TRUE))){stop("Argument 'db' must be set to FALSE or TRUE")}
     if(isTRUE(db)){
-      if(language == "DE"){
-        rangenames_names <- rangenames
-        rangenames <- attributetable()[which(attributetable()$Name_DE %in% rangenames),
-                                     which(names(attributetable()) == "DBaseName")]
-        names(rangenames) <- rangenames_names
-      }
-      if(language == "ES"){
-        rangenames_names <- rangenames
-        rangenames <- attributetable()[which(attributetable()$Name_ES %in% rangenames),
-                                     which(names(attributetable()) == "DBaseName")]
-        names(rangenames) <- rangenames_names
-      }
-      if(language == "FR"){
-        rangenames_names <- rangenames
-        rangenames <- attributetable()[which(attributetable()$Name_FR %in% rangenames),
-                                     which(names(attributetable()) == "DBaseName")]
-        names(rangenames) <- rangenames_names
-      }
-      if(language == "PT"){
-        rangenames_names <- rangenames
-        rangenames <- attributetable()[which(attributetable()$Name_PT %in% rangenames),
-                                     which(names(attributetable()) == "DBaseName")]
-        names(rangenames) <- rangenames_names
-      }
-      if(language == "RU"){
-        rangenames_names <- rangenames
-        rangenames <- attributetable()[which(attributetable()$Name_RU %in% rangenames),
-                                     which(names(attributetable()) == "DBaseName")]
-        names(rangenames) <- rangenames_names
-      }
-      if(language == "TR"){
-        rangenames_names <- rangenames
-        rangenames <- attributetable()[which(attributetable()$Name_TR %in% rangenames),
-                                     which(names(attributetable()) == "DBaseName")]
-        names(rangenames) <- rangenames_names
-      }
-      if(language == "ZH"){
-        rangenames_names <- rangenames
-        rangenames <- attributetable()[which(attributetable()$Name_ZH %in% rangenames),
-                                     which(names(attributetable()) == "DBaseName")]
-        names(rangenames) <- rangenames_names
-      }
+      rangenames_names <- rangenames
+      c <- which(names(attributetable()) == "DBaseName")
+      if(language == "DE"){r <- which(attributetable()$Name_DE %in% rangenames)}
+      if(language == "ES"){r <- which(attributetable()$Name_ES %in% rangenames)}
+      if(language == "FR"){r <- which(attributetable()$Name_FR %in% rangenames)}
+      if(language == "PT"){r <- which(attributetable()$Name_PT %in% rangenames)}
+      if(language == "RU"){r <- which(attributetable()$Name_RU %in% rangenames)}
+      if(language == "TR"){r <- which(attributetable()$Name_TR %in% rangenames)}
+      if(language == "ZH"){r <- which(attributetable()$Name_ZH %in% rangenames)}
+    rangenames <- attributetable()[r,c]
+    names(rangenames) <- rangenames_names
     }
   }
-  return(rangenames)
+  output <- rangenames
+
+  ##### return output
+  return(output)
 }

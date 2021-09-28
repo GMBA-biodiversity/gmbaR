@@ -21,24 +21,30 @@
 #' }
 
 gmba_read <- function(source = "web", local = NULL) { # WEB TO ADD
+
+  ##### check attributes
   source <- match.arg(source, c("web", "local"))
+
+  ##### run function
+  # source = web
+  if(source == "web"){
+    stop("Reading the GMBA Inventory v2.0 from the web is not implementet yet.")
+  }
+
+  # source = local
   if(source == "local"){
     if(is.null(local)){
       stop("No file path to the inventory shapefile provided.")
     }
-  }
-  # read from web
-  if(source == "web"){
-    stop("Reading the GMBA Inventory v2.0 from the web is not implementet yet.")
-  }
-  # read from local drive
-  if(source == "local"){
     gmba_inventory_v_2_0 <- st_read(local, quiet=TRUE)
   }
+
+  ##### return the inventory
   gmba_inventory_v_2_0$GMBA_V2_ID <- as.character(gmba_inventory_v_2_0$GMBA_V2_ID)
   return(assign("gmba_inv",
                 local({
                   function() gmba_inventory_v_2_0
                 }),
                 envir = parent.frame()))
+
 }

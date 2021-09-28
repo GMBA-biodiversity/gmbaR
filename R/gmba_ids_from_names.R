@@ -17,17 +17,24 @@
 #' }
 
 gmba_ids_from_names <- function(rangename_vector){
-  # check if the inventory is read
+
+  ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
   }
-  # function
+
+  ##### set attributes
   inv_ids <- gmba_inv()$GMBA_V2_ID
   inv_names <- as.character(gmba_inv()$DBaseName)
-  ids <- inv_ids[which(inv_names %in% rangename_vector)]
-  if(length(ids) == 0){
+
+  ##### run function
+  output <- inv_ids[which(inv_names %in% rangename_vector)]
+
+  ##### return output
+  if(length(output) == 0){
     warning("The given mountain range(s) do not exist. Misspelled? Use gmba_search_names() to find the inventory names needed.\n")}
   else {
-    return(ids)
+    return(output)
   }
+
 }

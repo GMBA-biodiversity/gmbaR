@@ -25,13 +25,19 @@
 #' }
 
 gmba_lower_id_from_higher <- function(rangeid, lowerlevel_numeric, method){
-  # check if the inventory is read
+
+  ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
   }
-  # function
-  method <- match.arg(method, c("parent", "steps"))
+
+  ##### set attributes
   inv_ids <- attributetable()$GMBA_V2_ID
+
+  ###### check arguments
+  method <- match.arg(method, c("parent", "steps"))
+
+  ###### run function
   # method = parent
   if(method == "parent"){
     # identify parent range path and id
@@ -41,29 +47,32 @@ gmba_lower_id_from_higher <- function(rangeid, lowerlevel_numeric, method){
     parentrangepath <- paste(unlist(strsplit(rangepath, " > "))[c(1:lowerlevel_numeric)], collapse = " > ")
     r <- which(attributetable()$Path == parentrangepath)
     c <- which(names(attributetable()) == "GMBA_V2_ID")
-    lowerlevel <- attributetable()[r,c]
-    return(lowerlevel)
+    output <- attributetable()[r,c]
   }
+
   # method = steps
   if(method == "steps"){
     if(lowerlevel_numeric > 0){
       # identify lower level
       r <- which(inv_ids == as.character(rangeid))
-      c <- which(attributes == "Path")
+      c <- which(names(attributetable()) == "Path")
       rangepath <- attributetable()[r,c]
       levels <- strsplit(rangepath, split = " > ", fixed = TRUE)
       levels <- levels[[1]]
-      lowerlevel <- which(levels == attributetable()$DBaseName[r])-lowerlevel_numeric
-      if(lowerlevel > 0){
-        # dissolve lower level
-        lowerlevel <- levels[lowerlevel]
-        lowerlevel <- gmba_ids_from_names(lowerlevel)
-        return(lowerlevel)
+      output <- which(levels == attributetable()$DBaseName[r])-lowerlevel_numeric
+      if(output > 0){
+        # reduce to target level
+        output <- levels[output]
+        output <- gmba_ids_from_names(output)
       } else {
         stop("The selected number of steps doesn't give a valid mountain range level.")
+      }}
+    else {
+        stop("The number of steps needs to be 1 or higher.")
       }
-    } else {
-      stop("The number of steps needs to be 1 or higher.")
-    }
   }
+
+  ###### return output
+  return(output)
+
 }

@@ -19,23 +19,41 @@
 #' }
 
 gmba_ids_from_country <- function(iso){
-  attributes <- names(attributetable())
-  inv_countries <- attributetable()$Countries
-  inv_countries <- tolower(inv_countries)
+
+  ##### check if the inventory is read
+  if(exists("gmba_inv") == FALSE){
+    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
+  }
+
+  ###### set attributes
+  inv_countries <- tolower(attributetable()$Countries)
+
+  ###### check arguments
+  # iso
   iso <- gsub(" ", "", iso, fixed = TRUE)
   iso <- tolower(unlist(strsplit(iso, ",")))
   if(sum(unique(nchar(iso))) != 3){
     stop("The input must be one or more ISO-3 code(s), all with 3 characters.")
   }
-  ranges <- NA
+
+  ###### run function
+  output <- NA
+
   for(i in 1:length(iso)){
-    rangesloop <- attributetable()[which(grepl(iso[i], inv_countries)), which(attributes == "GMBA_V2_ID")]
-    ranges <- c(ranges, rangesloop)
+    r <- which(grepl(iso[i], inv_countries))
+    c <- which(names(attributetable()) == "GMBA_V2_ID")
+    rangesloop <- attributetable()[r,c]
+    output <- c(output, rangesloop)
   }
-  ranges <- unique(ranges)
-  ranges <- ranges[-which(is.na(ranges))]
-  if(length(ranges) == 0){
+
+  output <- unique(output)
+  output <- output[-which(is.na(output))]
+
+  if(length(output) == 0){
     warning("For the selected countries, no GMBA Inventory v2.0 IDs were found.")
   }
-  return(ranges)
+
+  ###### return output
+  return(output)
+
 }

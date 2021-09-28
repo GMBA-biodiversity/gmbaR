@@ -20,8 +20,8 @@ Get your pre-selected GMBA Inventory v2.0 mountain range IDs from the \href{url}
 }
 \examples{
 \dontrun{
-selection <- gmba_ids_from_selectiontool("Selection_Tool_v20210423.xlsx")
-selection_overlapping <- gmba_ids_from_selectiontool("Selection_Tool_v20210423.xlsx",
+selection <- gmba_ids_from_selectiontool("Selection_Tool.xlsx")
+selection_overlapping <- gmba_ids_from_selectiontool("Selection_Tool.xlsx",
                                                      overlap = TRUE)
 }
 }

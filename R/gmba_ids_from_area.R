@@ -18,15 +18,25 @@
 #' }
 
 gmba_ids_from_area <- function(area, calc){
-  calc <- match.arg(calc, c("max", "min"))
+
+  ###### check arguments
+  # area
   inv_area <- attributetable()$Area
   if(!between(area, min(inv_area), max(inv_area))){
     stop("The lower elevation limit must be within 2 and 14480076.")}
+
+  # calc
+  calc <- match.arg(calc, c("max", "min"))
+
+  ###### run function
   if(calc == "max"){
-    ranges <- gmba_inv()$GMBA_V2_ID[which(inv_area < area)]
+    output <- gmba_inv()$GMBA_V2_ID[which(inv_area < area)]
   }
   if(calc == "min"){
-    ranges <- gmba_inv()$GMBA_V2_ID[which(inv_area > area)]
+    output <- gmba_inv()$GMBA_V2_ID[which(inv_area > area)]
   }
-  return(ranges)
+
+  ###### return output
+  return(output)
+
 }
