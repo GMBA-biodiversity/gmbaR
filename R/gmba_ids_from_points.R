@@ -82,7 +82,7 @@ gmba_ids_from_points <- function(xy_dataframe, range_selection, manual = NULL){
     if(is.null(manual)){
       stop("No mountain range selection provided.")
     }
-    polygons <- gmba_subset(range_selection)
+    polygons <- gmba_subset(manual)
   }
   coordinates <- do.call("st_sfc",c(lapply(1:nrow(xy_dataframe),
                                            function(i) {st_point(as.numeric(xy_dataframe[i,]))}), list("crs" = 4326)))
