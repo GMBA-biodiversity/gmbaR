@@ -25,7 +25,6 @@
 #'
 #' @return Depending on the output format selection, see details
 #'
-#' @import sf
 #' @export
 #'
 #' @examples

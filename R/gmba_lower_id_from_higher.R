@@ -16,7 +16,6 @@
 #' @return Character string of the lower GMBA Inventory v2.0 mountain range ID associated
 #' with the input ID
 #'
-#' @import sf
 #' @export
 #'
 #' @examples

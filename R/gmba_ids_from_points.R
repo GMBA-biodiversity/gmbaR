@@ -19,6 +19,7 @@
 #' @return Character vector of the GMBA Inventory v2.0 mountain range IDs associated
 #' with the input names
 #'
+#' @import sf
 #' @export
 #'
 #' @examples
