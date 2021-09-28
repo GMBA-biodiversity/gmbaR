@@ -11,7 +11,7 @@ Depending on the output format selection, see details
 }
 \description{
 Interactively filter and select mountain ranges from the GMBA Inventory v2.0.
-This function represents the \href{url}{Selection Tool} integrated in R.
+This function can be considered as the \href{url}{Selection Tool} implemented in R.
 }
 \details{
 {First, you are given four options to filter the inventory. After filtering, you can select
