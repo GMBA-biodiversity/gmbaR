@@ -47,14 +47,14 @@ gmba_search_names <- function(part_of_rangename, language = "EN", db = FALSE){
 
   ##### run functions
   name_vector_lowercase <- tolower(part_of_rangename)
-  if(language == "EN"){inv_names <- as.character(gmba_inv()$DBaseName)}
-  if(language == "DE"){inv_names <- as.character(gmba_inv()$Name_DE)}
-  if(language == "ES"){inv_names <- as.character(gmba_inv()$Name_ES)}
-  if(language == "FR"){inv_names <- as.character(gmba_inv()$Name_FR)}
-  if(language == "PT"){inv_names <- as.character(gmba_inv()$Name_PT)}
-  if(language == "RU"){inv_names <- as.character(gmba_inv()$Name_RU)}
-  if(language == "TR"){inv_names <- as.character(gmba_inv()$Name_TR)}
-  if(language == "ZH"){inv_names <- as.character(gmba_inv()$Name_ZH)}
+  if(language == "EN"){inv_names <- as.character(attributetable()$DBaseName)}
+  if(language == "DE"){inv_names <- as.character(attributetable()$Name_DE)}
+  if(language == "ES"){inv_names <- as.character(attributetable()$Name_ES)}
+  if(language == "FR"){inv_names <- as.character(attributetable()$Name_FR)}
+  if(language == "PT"){inv_names <- as.character(attributetable()$Name_PT)}
+  if(language == "RU"){inv_names <- as.character(attributetable()$Name_RU)}
+  if(language == "TR"){inv_names <- as.character(attributetable()$Name_TR)}
+  if(language == "ZH"){inv_names <- as.character(attributetable()$Name_ZH)}
   if(language != "EN"){inv_names <- inv_names[-which(is.na(inv_names))]}
   inv_names_lowercase <- tolower(inv_names)
   rangenames <- inv_names[which(grepl(name_vector_lowercase, inv_names_lowercase))]

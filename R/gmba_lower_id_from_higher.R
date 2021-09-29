@@ -28,8 +28,7 @@ gmba_lower_id_from_higher <- function(rangeid, lowerlevel_numeric, method){
 
   ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
-    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
-  }
+    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")}
 
   ##### set attributes
   inv_ids <- attributetable()$GMBA_V2_ID

@@ -6,8 +6,8 @@
 #' with columns "x" and "y" i.e. longitude and latitude
 #' @param range_selection Character string, the options are:
 #' \itemize{
-#' \item{\emph{"all"} = all level ranges, cross-scale (returns lists of ids!)}
-#' \item{\emph{"basic"} = basic mountain ranges only (default)}
+#' \item{\emph{"all"} = all level ranges, cross-scale (returns lists of ids!) (default)}
+#' \item{\emph{"basic"} = basic mountain ranges only}
 #' \item{\emph{"300"} = ranges included in the 300 pre-selection}
 #' \item{\emph{"100"} = ranges included in the 100 pre-selection}
 #' \item{\emph{"level1"}-\emph{"level10"} = ranges pertaining to the respective level
@@ -31,59 +31,18 @@
 #' }
 
 gmba_ids_from_points <- function(xy_dataframe,
-                                 range_selection = "basic", manual = NULL){
-  range_selection <- match.arg(range_selection, c("all", "basic", "300", "100",
-                                                  "level1", "level2", "level3", "level4", "level5",
-                                                  "level6", "level7", "level8", "level9", "level10",
-                                                  "manual"))
-  if(range_selection == "all"){
-    polygons <- gmba_inv()
-  } else
-    if(range_selection == "basic"){
-      polygons <- gmba_inv()[which(gmba_inv()$MapUnit == "Basic"),]
-    } else
-      if(range_selection == "300"){
-        polygons <- gmba_inv()[which(gmba_inv()$GMBA_V2_ID %in% gmba_ids_from_preselection("300")),]
-      } else
-        if(range_selection == "100"){
-          polygons <- gmba_inv()[which(gmba_inv()$GMBA_V2_ID %in% gmba_ids_from_preselection("100")),]
-        } else
-          if(range_selection == "level1"){
-            polygons <- gmba_inv()[which(gmba_inv()$Level == 1),]
-          } else
-            if(range_selection == "level2"){
-              polygons <- gmba_inv()[which(gmba_inv()$Level == 2),]
-            } else
-              if(range_selection == "level3"){
-                polygons <- gmba_inv()[which(gmba_inv()$Level == 3),]
-              } else
-                if(range_selection == "level4"){
-                  polygons <- gmba_inv()[which(gmba_inv()$Level == 4),]
-                } else
-                  if(range_selection == "level5"){
-                    polygons <- gmba_inv()[which(gmba_inv()$Level == 5),]
-                  } else
-                    if(range_selection == "level6"){
-                      polygons <- gmba_inv()[which(gmba_inv()$Level == 6),]
-                    } else
-                      if(range_selection == "level7"){
-                        polygons <- gmba_inv()[which(gmba_inv()$Level == 7),]
-                      } else
-                        if(range_selection == "level8"){
-                          polygons <- gmba_inv()[which(gmba_inv()$Level == 8),]
-                        } else
-                          if(range_selection == "level9"){
-                            polygons <- gmba_inv()[which(gmba_inv()$Level == 9),]
-                          } else
-                            if(range_selection == "level10"){
-                              polygons <- gmba_inv()[which(gmba_inv()$Level == 10),]
-                            }
-  if(range_selection == "manual"){
-    if(is.null(manual)){
-      stop("No mountain range selection provided.")
-    }
-    polygons <- gmba_subset(manual)
-  }
+                                 range_selection = "all", manual = NULL){
+
+  ##### check if the inventory is read
+  if(exists("gmba_inv") == FALSE){
+    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")}
+
+  ##### check attributes
+  # range_selection and manual are checked in gmba_ids_from_selection()
+
+  ##### run function
+  r <- which(gmba_inv()$GMBA_V2_ID %in% gmba_ids_from_selection(range_selection, manual))
+  polygons <- gmba_inv()[r,]
   points <- xy_dataframe
   coordinates <- do.call("st_sfc",c(lapply(1:nrow(xy_dataframe),
                                            function(i) {st_point(as.numeric(xy_dataframe[i,]))}), list("crs" = 4326)))
@@ -103,5 +62,8 @@ gmba_ids_from_points <- function(xy_dataframe,
   {
     names(points)[which(names(points) == "polygons")] <- "ranges"
   }
-  return(points)
+  output <- points
+
+  ##### return output
+  return(output)
 }

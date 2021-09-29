@@ -22,8 +22,7 @@ gmba_ids_from_selectiontool <- function(local, overlap = FALSE){
 
   ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
-    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
-  }
+    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")}
 
   ##### set attributes
   inv_ids <- gmba_inv()$GMBA_V2_ID

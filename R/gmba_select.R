@@ -36,8 +36,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
 
   ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
-    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
-  }
+    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")}
 
   ##### set attributes
   inv_ids <- attributetable()$GMBA_V2_ID
@@ -65,8 +64,10 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
 
     # filter by mountain range name
     if(filteroption == 1){
+      # readline
       name_input <- suppressWarnings(readline(prompt = paste("Enter (part of) a mountain range name: ")))
       if(name_input == "stop"){stop("manual stop")}
+      # filter
       name_input <- tolower(name_input)
       r <- which(grepl(name_input, inv_names))
       c <- which(names(attributetable()) == "GMBA_V2_ID")
@@ -79,6 +80,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
 
     # filter by country
     if(filteroption == 2){
+      # readline
       country_input <- suppressWarnings(readline(prompt = paste("Enter one or more countries per ISO-3 code, separated by a comma: ")))
       if(country_input == "stop"){stop("manual stop")}
       country_input <- gsub(" ", "", country_input, fixed = TRUE)
@@ -89,7 +91,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
         country_input <- gsub(" ", "", country_input, fixed = TRUE)
         country_input <- tolower(unlist(strsplit(country_input, ",")))
         if(sum(unique(nchar(country_input))) == 3){break}}} # readline test
-
+      # filter
       ranges <- NA
       for(iso in 1:length(country_input)){
         r <- which(grepl(country_input[iso], inv_countries))
@@ -113,6 +115,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
     # filter by IPBES (sub) regions
     if(filteroption == 3){
       # based on doi.org/10.5281/zenodo.3928281
+      # readline
       cat(paste("Enter one or more IPBES (sub) regions, separated by comma: \n1: Africa \n 2: Central Africa \n 3: East Africa and adjacent islands \n 4: North Africa \n 5: Southern Africa \n 6: West Africa \n7: The Americas \n 8: Caribbean \n 9: Mesoamerica \n 10: North America \n 11: South America \n12: Asia and the Pacific \n 13: North-East Asia \n 14: Oceania \n 15: South Asia \n 16: South-East Asia \n 17: Western Asia \n18: Europe and Central Asia \n 19: Central and Western Europe \n 20: Central Asia \n 21: Eastern Europe", sep=""))
       ipbes_input <- suppressWarnings(readline(prompt = paste("Input: ")))
       if(ipbes_input == "stop"){stop("manual stop")}
@@ -124,6 +127,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
         ipbes_input <- as.numeric(unlist(strsplit(ipbes_input, ",")))
         breaktest <- unique(ipbes_input %in% c(1:21))
         if(!(FALSE %in% breaktest)){break}}} # readline test
+      # filter
       country_input <- NA
       ipbes_countries_1 <- c("ago","bdi","ben","bfa","bwa","caf","civ","cmr","cod","cog","com","cpv","dji","dza","egy","eri","esh","eth","gab","gha","gin","gmb","gnb","gnq","ken","lbr","lby","lso","mar","mdg","mli","moz","mrt","mus","mwi","myt","nam","ner","nga","reu","rwa","sdn","sen","shn","sle","som","ssd","stp","swz","syc","tcd","tgo","tun","tza","uga","zaf","zmb","zwe")
       ipbes_countries_2 <- c("bdi","caf","cmr","cod","cog","gab","gnq","stp","tcd")
@@ -189,6 +193,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
 
     # filter by IPCC regions
     if(filteroption == 4){
+      # readline
 
       warning("The IPCC filter option is not implemented yet.",
               immediate. = TRUE)
@@ -310,6 +315,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       # print(attributetable()[which(inv_ids %in% rangeselection), which(names(attributetable()) == "DBaseName")])
 
     }
+
     # return to loop question
     continue <- suppressWarnings(readline(prompt = paste("Continue filtering? Yes or no: ")))
     if(continue == "stop"){stop("manual stop")}
@@ -333,11 +339,13 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
 
   # select all polygons from the filter
   if(selectoption == 1){
+    # select
     cat(paste("Note: All above displayed mountain ranges selected.\n", sep=""))
   }
 
   # select individual polygons from the filter
   if(selectoption == 2){
+    # readline
     numbers_input <- suppressWarnings(readline(prompt = paste("Enter the number(s) of the range(s) to select, separated by a comma: ")))
     if(selectoption == "stop"){stop("manual stop")}
     numbers_input <- gsub(" ", "", numbers_input, fixed = TRUE)
@@ -348,6 +356,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       numbers_input <- as.numeric(unlist(strsplit(numbers_input, ",")))
       breaktest <- unique(numbers_input %in% c(1:length(rangeselection)))
       if(!(FALSE %in% breaktest)){break}}} # readline test
+    # select
     rangeselection <- rangeselection[numbers_input]
     cat(paste("Selected mountain ranges:\n", sep=""))
     r <- which(inv_ids %in% rangeselection)
@@ -357,6 +366,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
   }
 
   ### output format
+  # readline
   cat(paste("+++ Output format +++ \n1: mountain range polygons \n2: mountain range map names \n3: GMBA Inventory v2 IDs", sep=""))
   formatoption <- suppressWarnings(readline(prompt = paste("Input: ")))
   if(formatoption == "stop"){stop("manual stop")}
