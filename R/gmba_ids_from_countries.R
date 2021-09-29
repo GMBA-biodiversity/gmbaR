@@ -29,8 +29,8 @@
 #' rangeids <- gmba_ids_from_country(c("che", "deu"))
 #' }
 
-gmba_ids_from_country <- function(iso,
-                                  range_selection = "all", manual = NULL){
+gmba_ids_from_countries <- function(iso,
+                                    range_selection = "all", manual = NULL){
 
   ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
