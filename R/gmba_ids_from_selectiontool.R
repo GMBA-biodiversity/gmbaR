@@ -25,13 +25,10 @@ gmba_ids_from_selectiontool <- function(local, overlap = FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")}
 
   ##### set attributes
-  inv_ids <- gmba_inv()$GMBA_V2_ID
+  inv_ids <- attributetable()$GMBA_V2_ID
 
   ##### run function
   selectiontool <- read.xlsx(local, sheet = 1)
-  names(selectiontool)[c(7:16)] <- paste("Level", c(1:10), sep = "") ### CHECK COLUMNS
-  selectiontool$GMBA_V2_ID <- as.character(selectiontool$GMBA_V2_ID)
-
   if(overlap == FALSE){
     output <- inv_ids[!is.na(selectiontool$Range_Selector)]
   }
