@@ -19,7 +19,7 @@ all or individual ranges from the filter. A 'stop' as response to each question 
 the function from running.\cr\cr
 The filter options are:
 \enumerate{
-\item{By mountain range name}
+\item{By mountain range name (English only, for other languages see \code{gmba_search_names()})}
 \item{By country}
 \item{By IPBES region or subregion, based on \href{https://doi.org/10.5281/zenodo.3928281}{doi:10.5281/zenodo.3928281}}
 \item{By IPCC AR6 region, based on \href{https://doi.org/10.5194/essd-12-2959-2020}{doi:10.5194/essd-12-2959-2020}}}

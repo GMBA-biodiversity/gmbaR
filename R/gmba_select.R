@@ -8,7 +8,7 @@
 #' the function from running.\cr\cr
 #' The filter options are:
 #' \enumerate{
-#' \item{By mountain range name}
+#' \item{By mountain range name (English only, for other languages see \code{gmba_search_names()})}
 #' \item{By country}
 #' \item{By IPBES region or subregion, based on \href{https://doi.org/10.5281/zenodo.3928281}{doi:10.5281/zenodo.3928281}}
 #' \item{By IPCC AR6 region, based on \href{https://doi.org/10.5194/essd-12-2959-2020}{doi:10.5194/essd-12-2959-2020}}}
@@ -68,11 +68,8 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
       name_input <- suppressWarnings(readline(prompt = paste("Enter (part of) a mountain range name: ")))
       if(name_input == "stop"){stop("manual stop")}
       # filter
-      name_input <- tolower(name_input)
-      r <- which(grepl(name_input, inv_names))
-      c <- which(names(attributetable()) == "GMBA_V2_ID")
-      ranges <- attributetable()[r,c]
-      rangeselection <- rangeselection[which(rangeselection %in% ranges)]
+      ranges <- gmba_search_names(name_input)
+      rangeselection <- rangeselection[which(rangeselection %in% gmba_ids_from_names(ranges))]
       r <- which(inv_ids %in% rangeselection)
       c <- which(names(attributetable()) == "DBaseName")
       print(attributetable()[r,c])
@@ -92,15 +89,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
         country_input <- tolower(unlist(strsplit(country_input, ",")))
         if(sum(unique(nchar(country_input))) == 3){break}}} # readline test
       # filter
-      ranges <- NA
-      for(iso in 1:length(country_input)){
-        r <- which(grepl(country_input[iso], inv_countries))
-        c <- which(names(attributetable()) == "GMBA_V2_ID")
-        rangesloop <- attributetable()[r,c]
-        ranges <- c(ranges, rangesloop)
-      }
-      ranges <- unique(ranges)
-      ranges <- ranges[-which(is.na(ranges))]
+      ranges <- gmba_ids_from_country(country_input)
       if(length(ranges) == 0){
         warning("For the selected countries, no mountain polygons were found.",
                 immediate. = TRUE)
