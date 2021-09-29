@@ -15,9 +15,9 @@ The GMBA Mountain Inventory v2.0 consists of two main files that are available o
 The inventory shapefile *GMBA_Inventory_v2.0.shp* contains the spatial data of the GMBA Inventory v2.0.
 
 ##### The Selection Tool
-The selection tool *Selection file.xlsx* is an Excel sheet providing the hierarchy data of the GMBA Inventory v2.0. When opening this in Excel, you have access to the full mountain inventory except the spatial data. You can manually select those mountain ranges you want to further use in your work in column AA ("Range_Selector") of the Excel sheet and then save the file for further use. For example, with *gmba_ids_from_selectiontool* from *gmbaR*, you can directly read the selected IDs to R.
+The selection tool *Selection file.xlsx* is an Excel sheet providing the hierarchy data of the GMBA Inventory v2.0. When opening this in Excel, you have access to the full mountain inventory except the spatial data. You can manually select those mountain ranges you want to further use in your work in column AA ("Range_Selector") of the Excel sheet and then save the file for further use.
 
-Alternatively, you can use `gmba_select()` from *gmbaR* to filter and select mountain ranges from the inventory.
+With *gmba_ids_from_selectiontool* you can read the selected IDs directly into R. Alternatively, you can use `gmba_select()` from *gmbaR* to filter and select mountain ranges from the inventory.
 <br/>
 <br/>
 
