@@ -13,12 +13,13 @@ gmba_ids_from_spi(
 )
 }
 \arguments{
-\item{spi}{Character string, either \emph{"ipbes"} or \emph{"ipcc}}
+\item{spi}{Character string, either \emph{"ipbes"} or \emph{"ipcc"}}
 
-\item{regions}{Character vector, indicating the IPBES or IPCC regions to get mountain range IDs for}
+\item{regions}{Character vector, indicating the IPBES or IPCC regions to get mountain range
+IDs for. See details for the format of regions needed}
 
 \item{calc}{Calculation of how mountain ranges are associated with the IPBES or IPCC regions.
-Options are \emph{"maj"} (default) and \emph{"str"}. See details}
+Options are \emph{"maj"} (default) and \emph{"str"}. See details for the methodologies}
 
 \item{range_selection}{Character string, the options are:
 \itemize{
@@ -44,10 +45,82 @@ Biodiversity and Ecosystem Services, or b) the IPCC, Intergovernmental Panel on 
 }
 \details{
 {
-\itemize{
-\item{IPBES regions are: \n1: Africa \n 2: Central Africa \n 3: East Africa and adjacent islands \n 4: North Africa \n 5: Southern Africa \n 6: West Africa \n7: The Americas \n 8: Caribbean \n 9: Mesoamerica \n 10: North America \n 11: South America \n12: Asia and the Pacific \n 13: North-East Asia \n 14: Oceania \n 15: South Asia \n 16: South-East Asia \n 17: Western Asia \n18: Europe and Central Asia \n 19: Central and Western Europe \n 20: Central Asia \n 21: Eastern Europe}
-\item{IPCC regions are: \n1: Greenland/Iceland (GIC) \n2: N.W.North-America (NWN) \n3: N.E.North-America (NEN) \n4: W.North-America (WNA) \n5: C.North-America (CNA) \n6: E.North-America (ENA) \n7: N.Central-America (NCA) \n8: S.Central-America (SCA) \n9 or 10: Caribbean (CAR) \n11: N.W.South-America (NWS) \n12: N.South-America (NSA) \n13: N.E.South-America (NES) \n14: South-American-Monsoon (SAM) \n15: S.W.South-America (SWS) \n16: S.E.South-America (SES) \n17: S.South-America (SSA) \n18: N.Europe (NEU) \n19: Western&Central-Asia (WCE) \n20: E.Europe (EEU) \n21 or 22: Mediterranean (MED) \n23: Sahara (SAH) \n24: Western-Africa (WAF) \n25: Central-Africa (CAF) \n26: N.Eastern-Africa (NEAF) \n27: S.Eastern-Africa (SEAF) \n28: W.Southern-Africa (WSAF) \n29: E.Southern-Africa (ESAF) \n30: Madagascar (MDG) \n31: Russian-Arctic (RAR) \n32: W.Siberia (WSB) \n33: E.Siberia (ESB) \n34: Russian-Far-East (RFE) \n35: W.C.Asia (WCA) \n36: E.C.Asia (ECA) \n37: Tibetan-Planteau (TIB) \n38: E.Asia (EAS) \n39: Arabian-Peninsula (ARP) \n40: S.Asia (SAS) \n41 or 42: S.E.Asia (SEA) \n43: N.Australia (NAU) \n44: C.Australia (CAU) \n45: E.Australia (EAU) \n46: S.Australia (SAU) \n47: New-Zealand (NZ) \n48: E.Antarctica (EAN) \n49: W.Antarctica (WAN) \n50: Arctic-Ocean (ARO) \n51: N.Pacific-Ocean (NPO) \n52: Equatorial.Pacific-Ocean (EPO) \n53: S.Pacific-Ocean (SPO) \n54: N.Atlantic-Ocean (NAO) \n55: Equatorial.Atlantic-Ocean (EAO) \n56: S.Atlantic-Ocean (SAO) \n57: Arabian-Sea (ARS) \n58: Bay-of-Bengal (BOB) \n59: Equatorial.Indic-Ocean (EIO) \n60: S.Indic-Ocean (SIO) \n61: Southern-Ocean (SOO)}
-\item{We attributed corresponding IPBES or IPCC regions to each of the GMBA Inventory v2.0
+\bold{IPBES regions:}
+The subsequent IPBES regions (and subregions) are implemented. In \code{region}, use the
+(sub)region name in the same spelling, incl. upper and lower cases:
+\enumerate{
+\item{Africa (Central Africa, East Africa and adjacent islands, North Africa, Southern Africa, West Africa)}
+\item{The Americas (Caribbean, Mesoamerica, North America, South America)}
+\item{Asia and the Pacific (North-East Asia, Oceania, South Asia, South-East Asia, Western Asia)}
+\item{Europe and Central Asia (Central and Western Europe, Central Asia, Eastern Europe)}
+}
+
+\bold{IPCC regions:}
+The subsequent IPCC AR6 regions are implemented. In \code{region}, use the region abbreviations
+in upper cases:
+\enumerate{
+\item{Greenland/Iceland (GIC)}
+\item{N.W.North-America (NWN)}
+\item{N.E.North-America (NEN)}
+\item{W.North-America (WNA)}
+\item{C.North-America (CNA)}
+\item{E.North-America (ENA)}
+\item{N.Central-America (NCA)}
+\item{S.Central-America (SCA)}
+\item{Caribbean (CAR)}
+\item{N.W.South-America (NWS)}
+\item{N.South-America (NSA)}
+\item{N.E.South-America (NES)}
+\item{South-American-Monsoon (SAM)}
+\item{S.W.South-America (SWS)}
+\item{S.E.South-America (SES)}
+\item{S.South-America (SSA)}
+\item{N.Europe (NEU)}
+\item{Western&Central-Asia (WCE)}
+\item{E.Europe (EEU)}
+\item{Mediterranean (MED)}
+\item{Sahara (SAH)}
+\item{Western-Africa (WAF)}
+\item{Central-Africa (CAF)}
+\item{N.Eastern-Africa (NEAF)}
+\item{S.Eastern-Africa (SEAF)}
+\item{W.Southern-Africa (WSAF)}
+\item{E.Southern-Africa (ESAF)}
+\item{Madagascar (MDG)}
+\item{Russian-Arctic (RAR)}
+\item{W.Siberia (WSB)}
+\item{E.Siberia (ESB)}
+\item{Russian-Far-East (RFE)}
+\item{W.C.Asia (WCA)}
+\item{E.C.Asia (ECA)}
+\item{Tibetan-Planteau (TIB)}
+\item{E.Asia (EAS)}
+\item{Arabian-Peninsula (ARP)}
+\item{S.Asia (SAS)}
+\item{S.E.Asia (SEA)}
+\item{N.Australia (NAU)}
+\item{C.Australia (CAU)}
+\item{E.Australia (EAU)}
+\item{S.Australia (SAU)}
+\item{New-Zealand (NZ)}
+\item{E.Antarctica (EAN)}
+\item{W.Antarctica (WAN)}
+\item{Arctic-Ocean (ARO)}
+\item{N.Pacific-Ocean (NPO)}
+\item{Equatorial.Pacific-Ocean (EPO)}
+\item{S.Pacific-Ocean (SPO)}
+\item{N.Atlantic-Ocean (NAO)}
+\item{Equatorial.Atlantic-Ocean (EAO)}
+\item{S.Atlantic-Ocean (SAO)}
+\item{Arabian-Sea (ARS)}
+\item{Bay-of-Bengal (BOB)}
+\item{Equatorial.Indic-Ocean (EIO)}
+\item{S.Indic-Ocean (SIO)}
+\item{Southern-Ocean (SOO)}
+}
+
+\bold{The method behind \code{calc}:}
+We attributed corresponding IPBES or IPCC regions to each of the GMBA Inventory v2.0
 polygons by a geometric union between the GMBA_Inventory_v2.0_broad layer on the one hand and
 the respective reference region shapefiles IPCC AR6 (\href{https://doi.org/10.5194/essd-12-2959-2020}{doi.org/10.5194/essd-12-2959-2020})
 and IPBES (\href{https://doi.org/10.5281/zenodo.3928281}{doi.org/10.5281/zenodo.3928281}).
@@ -56,11 +129,11 @@ performed after reprojecting each of the two union layers to Mollweide. For each
 reference region combination, we selected the one with the largest overlap and attributed that
 reference region to the respective \emph{GMBA_V2_ID} (\code{calc} = \emph{"maj"}). In addition, we created a
 string with all the reference regions each \emph{GMBA_V2_ID} intersected with (\code{calc} = \emph{"str"}).
-The default is set to \emph{"maj"}}}
+The default is set to \emph{"maj"}
 }
 }
 \examples{
 \dontrun{
-rangeids <- gmba_ids_from_ipcc("ipbes", "eca")
+rangeids <- gmba_ids_from_ipcc("ipbes", c("Europe and Central Asia"))
 }
 }
