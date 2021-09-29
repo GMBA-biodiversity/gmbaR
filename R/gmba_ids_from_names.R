@@ -24,8 +24,8 @@ gmba_ids_from_names <- function(rangename_vector){
   }
 
   ##### set attributes
-  inv_ids <- gmba_inv()$GMBA_V2_ID
-  inv_names <- as.character(gmba_inv()$DBaseName)
+  inv_ids <- attributetable()$GMBA_V2_ID
+  inv_names <- attributetable()$DBaseName
 
   ##### run function
   output <- inv_ids[which(inv_names %in% rangename_vector)]
