@@ -47,7 +47,7 @@ gmba_search_names <- function(part_of_rangename, language = "EN", db = FALSE){
 
   ##### run functions
   name_vector_lowercase <- tolower(part_of_rangename)
-  if(language == "EN"){inv_names <- as.character(attributetable()$DBaseName)}
+  if(language == "EN"){inv_names <- attributetable()$DBaseName}
   if(language == "DE"){inv_names <- as.character(attributetable()$Name_DE)}
   if(language == "ES"){inv_names <- as.character(attributetable()$Name_ES)}
   if(language == "FR"){inv_names <- as.character(attributetable()$Name_FR)}
