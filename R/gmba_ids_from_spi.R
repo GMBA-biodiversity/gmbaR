@@ -125,8 +125,8 @@ gmba_ids_from_spi <- function(spi, regions, calc = "maj",
 
   ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
-    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")
-  }
+    stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")}
+  ##### range_selection and manual are checked in gmba_ids_from_selection()
 
   ##### set attributes
   inv_ids <- gmba_ids_from_selection(range_selection, manual)
@@ -228,26 +228,35 @@ gmba_ids_from_spi <- function(spi, regions, calc = "maj",
 
   # spi = ipbes
   if(spi == "ipbes"){
-    # add regions to subregions
+    # if IPBES regions are given as input, adjust regions
+    # (as the regions are the sum of their subregions)
     if("Africa" %in% regions){
       regions <- c(regions, c("Central Africa",
                               "East Africa and adjacent islands",
                               "North Africa",
                               "Southern Africa",
-                              "West Africa"))}
+                              "West Africa"))
+      regions <- regions[-which(regions == "Africa")]}
     if("The Americas" %in% regions){
       regions <- c(regions, c("Caribbean",
                               "Mesoamerica",
                               "North America",
-                              "South America"))}
-
-
+                              "South America"))
+      regions <- regions[-which(regions == "The Americas")]}
+    if("Asia and the Pacific" %in% regions){
+      regions <- c(regions, c("North-East Asia",
+                              "Oceania",
+                              "South Asia",
+                              "South-East Asia",
+                              "Western Asia"))
+      regions <- regions[-which(regions == "Asia and the Pacific")]}
+    if("Europe and Central Asia" %in% regions){
+      regions <- c(regions, c("Central and Western Europe",
+                              "Central Asia",
+                              "Eastern Europe"))
+      regions <- regions[-which(regions == "Europe and Central Asia")]}
     regions <- unique(regions)
     regions <- tolower(regions)
-
-
-
-
     c <- which(names(ipbes) == "GMBA_V2_ID")
     # calc = maj
     if(calc == "maj"){
@@ -273,15 +282,17 @@ gmba_ids_from_spi <- function(spi, regions, calc = "maj",
         }
       }
     }
+    ranges <- unique(ranges)
+    ranges <- ranges[-which(is.na(ranges))]
+    output <- ranges[which(ranges %in% inv_ids)]
   }
 
   # IPCC
 
+
+
   ##### return output
-  ranges <- unique(ranges)
-  if("NA" %in% ranges){ranges <- ranges[-which(ranges == "NA")]}
-  ranges <- ranges[-which(is.na(ranges))]
-  return(ranges)
+  return(output)
 
 }
 
