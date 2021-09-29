@@ -40,7 +40,7 @@ Thereafter, the inventory is stored in the function *gmba_inv* (similarly to the
 Next to reading the inventory, the main functionalities of *gmbaR* are to 
 
 * explore the GMBA Inventory v2.0 (*gmba_search_names*, *gmba_names_from_ids*), 
-* get mountain range IDs (*gmba_ids_from_names*, *gmba_ids_from_points*, *gmba_lower_id_from_higher*, *gmba_ids_from_selectiontool*), and 
+* get mountain range IDs (*gmba_ids_from_names*, *gmba_ids_from_points*, *gmba_ids_from_elevation*, *gmba_ids_from_area*, *gmba_ids_from_countries*, *gmba_lower_id_from_higher*, *gmba_ids_from_spi*, *gmba_ids_from_selectiontool*), and 
 * subset the inventory based on mountain range IDs (*gmba_subset*).
 
 The function `gmba_select()` can be used for all three functionalities.
