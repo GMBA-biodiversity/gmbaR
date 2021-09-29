@@ -52,7 +52,7 @@ attributetable <- function(){
                                                    "Name_TR",
                                                    "Name_ZH")))]
   output$GMBA_V2_ID <- as.character(output$GMBA_V2_ID)
-  output$GMBA_V2_ID <- as.character(output$DBaseName)
+  output$DBaseName <- as.character(output$DBaseName)
   output <- st_set_geometry(output, NULL)
 
   ##### return output
