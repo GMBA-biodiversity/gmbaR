@@ -36,9 +36,7 @@ gmba_ids_from_points <- function(xy_dataframe,
   ##### check if the inventory is read
   if(exists("gmba_inv") == FALSE){
     stop("The GMBA Inventory v2.0 is not read to R. Use gmba_read() to create gmba_inv")}
-
-  ##### check attributes
-  # range_selection and manual are checked in gmba_ids_from_selection()
+  ##### range_selection and manual are checked in gmba_ids_from_selection()
 
   ##### run function
   r <- which(gmba_inv()$GMBA_V2_ID %in% gmba_ids_from_selection(range_selection, manual))
