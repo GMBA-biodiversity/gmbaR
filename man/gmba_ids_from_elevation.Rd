@@ -4,12 +4,30 @@
 \alias{gmba_ids_from_elevation}
 \title{Get mountain range IDs from elevation range}
 \usage{
-gmba_ids_from_elevation(elevation_low, elevation_high)
+gmba_ids_from_elevation(
+  elevation_low,
+  elevation_high,
+  range_selection = "all",
+  manual = NULL
+)
 }
 \arguments{
 \item{elevation_low}{Numeric, lower limit of an elevation range}
 
 \item{elevation_high}{Numeric, higher limit of an elevation range}
+
+\item{range_selection}{Character string, the options are:
+\itemize{
+\item{\emph{"all"} = all level ranges, cross-scale (returns lists of ids!) (default)}
+\item{\emph{"basic"} = basic mountain ranges only}
+\item{\emph{"300"} = a selection for global or IPBES/IPCC regional level analyses}
+\item{\emph{"100"} = a selection for global analyses}
+\item{\emph{"level1"}-\emph{"level10"} = ranges pertaining to the respective level
+of the inventory hierarchy}
+\item{\emph{"manual"} = range IDs provided with \code{manual}}}}
+
+\item{manual}{Character string containing the IDs of manually selected mountain ranges.
+Only needed when \code{range_selection} is set to \emph{manual}. Default is set to \emph{NULL}}
 }
 \value{
 Character vector of the GMBA Inventory v2.0 mountain range IDs associated
