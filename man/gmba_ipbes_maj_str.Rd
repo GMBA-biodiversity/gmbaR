@@ -12,7 +12,9 @@ data(gmba_ipbes_maj_str)
 }
 \description{
 Data for use in \emph{gmba_ids_from_spi( )}. Information on which IPBES subregion each
-mountain range of the GMBA inventory v2.0 is located in.
+mountain range of the GMBA inventory v2.0 is located in. For the calculation methodologies
+of how mountain ranges are associated with the IPBES (sub)regions see details of
+\emph{gmba_ids_from_spi( )}.
 }
 \references{
 \href{https://doi.org/10.5281/zenodo.3928281}{doi.org/10.5281/zenodo.3928281}
