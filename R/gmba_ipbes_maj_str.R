@@ -1,6 +1,6 @@
 #' IPBES (sub)region data for gmbaR
 #'
-#' Data for use in \emph{gmba_ids_from_spi()}. Information on which IPBES subregion each
+#' Data for use in \emph{gmba_ids_from_spi( )}. Information on which IPBES subregion each
 #' mountain range of the GMBA inventory v2.0 is located in.
 #'
 #' @docType data

@@ -11,7 +11,7 @@ Dataframe with three columns: GMBA_V2_ID, IPBES_maj, IPBES_str
 data(gmba_ipbes_maj_str)
 }
 \description{
-Data for use in \emph{gmba_ids_from_spi()}. Information on which IPBES subregion each
+Data for use in \emph{gmba_ids_from_spi( )}. Information on which IPBES subregion each
 mountain range of the GMBA inventory v2.0 is located in.
 }
 \references{
