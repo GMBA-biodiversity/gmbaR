@@ -130,8 +130,6 @@ gmba_ids_from_spi <- function(spi, regions, calc = "maj",
 
   ##### set attributes
   inv_ids <- gmba_ids_from_selection(range_selection, manual)
-  ipbes <- read.xlsx("https://raw.github.com/GMBA-biodiversity/gmbaR/main/man/ipbes_ipcc/GMBA_IPBES_maj_str.xlsx", sheet = 1)
-  ipcc <- read.xlsx("https://raw.github.com/GMBA-biodiversity/gmbaR/main/man/ipbes_ipcc/GMBA_IPCC_AR6_maj_str.xlsx", sheet = 1)
 
   ##### check arguments
   # spi
@@ -257,25 +255,25 @@ gmba_ids_from_spi <- function(spi, regions, calc = "maj",
       regions <- regions[-which(regions == "Europe and Central Asia")]}
     regions <- unique(regions)
     regions <- tolower(regions)
-    c <- which(names(ipbes) == "GMBA_V2_ID")
+    c <- which(names(gmba_ipbes_maj_str) == "GMBA_V2_ID")
     # calc = maj
     if(calc == "maj"){
       for(r in 1:length(regions)){
-        ipbes_maj <- tolower(ipbes$IPBES_maj)
+        ipbes_maj <- tolower(gmba_ipbes_maj_str$IPBES_maj)
         r <- which(grepl(regions[r], ipbes_maj))
-        rangesloop <- ipbes[r,c]
+        rangesloop <- gmba_ipbes_maj_str[r,c]
         ranges <- c(ranges, rangesloop)
       }
     }
     # calc = str
     if(calc == "str"){
       for(r in 1:length(regions)){
-        ipbes_str <- ipbes$IPBES_str
+        ipbes_str <- gmba_ipbes_maj_str$IPBES_str
         for(i in 1:length(ipbes_str)){
           ipbes_string <- tolower(unlist(strsplit(ipbes_str[i], ", ")))
           for(n in 1:length(ipbes_string)){
             if(grepl(regions[r], ipbes_string[n])){
-              rangesloop <- ipbes[i,c]
+              rangesloop <- gmba_ipbes_maj_str[i,c]
               ranges <- c(ranges, rangesloop)
             }
           }

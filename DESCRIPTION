@@ -14,4 +14,5 @@ Imports:
   openxlsx,
   sf,
   dplyr
+LazyData: true
 RoxygenNote: 7.1.2
