@@ -4,7 +4,7 @@
 \alias{gmba_ids_from_points}
 \title{Get mountain range IDs from points coordinates}
 \usage{
-gmba_ids_from_points(xy_dataframe, range_selection = "all", manual = NULL)
+gmba_ids_from_points(xy_dataframe, range_selection = "basic", manual = NULL)
 }
 \arguments{
 \item{xy_dataframe}{A dataframe containing point coordinates,
@@ -12,8 +12,8 @@ with columns "x" and "y" i.e. longitude and latitude}
 
 \item{range_selection}{Character string, the options are:
 \itemize{
-\item{\emph{"all"} = all level ranges, cross-scale (returns lists of ids!) (default)}
-\item{\emph{"basic"} = basic mountain ranges only}
+\item{\emph{"all"} = all level ranges, cross-scale (attention: may need some processing time!)}
+\item{\emph{"basic"} = basic mountain ranges only (default)}
 \item{\emph{"300"} = ranges included in the 300 pre-selection}
 \item{\emph{"100"} = ranges included in the 100 pre-selection}
 \item{\emph{"level1"}-\emph{"level10"} = ranges pertaining to the respective level
@@ -24,8 +24,11 @@ of the inventory hierarchy}
 Only needed when \code{range_selection} is set to \emph{manual}. Default is set to \emph{NULL}}
 }
 \value{
-Character vector of the GMBA Inventory v2.0 mountain range IDs associated
-with the input names
+The input \code{xy_dataframe} with an additional column "GMBA_V2_ID", containing
+the GMBA Inventory v2.0 mountain range IDs associated with the respective input point coordinate.
+In case a point coordinate is located in more than one mountain polygon (cross-scale), they
+are given as a collapsed character string, separated by comma. If a point coordinate does not lie
+within a mountain range polygon, an \emph{NA} is returned
 }
 \description{
 Get GMBA Inventory v2.0 mountain range IDs based on xy point coordinates.
