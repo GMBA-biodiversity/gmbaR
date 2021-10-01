@@ -217,7 +217,7 @@ gmba_ids_from_spi <- function(spi, regions, calc = "maj",
                                     "SOO"),
                          several.ok = TRUE)}
   if(("EAN" %in% regions) | ("WAN" %in% regions)){
-    message("Note: 'EAN' and 'WAN' are not among the IPCC AR6 regions relevant for the GMBA Inventory v2.0.")}
+    message("Note: The IPCC AR6 regions 'EAN' and 'WAN' are not relevant for the GMBA Inventory v2.0.")}
   # calc
   calc <- match.arg(calc, c("maj", "str"))
 

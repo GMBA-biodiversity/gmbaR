@@ -19,10 +19,11 @@ all or individual ranges from the filter. A 'stop' as response to each question 
 the function from running.\cr\cr
 The filter options are:
 \enumerate{
-\item{By mountain range name (English only, for other languages see \code{gmba_search_names()})}
-\item{By country}
-\item{By IPBES region or subregion, based on \href{https://doi.org/10.5281/zenodo.3928281}{doi:10.5281/zenodo.3928281}}
-\item{By IPCC AR6 region, based on \href{https://doi.org/10.5194/essd-12-2959-2020}{doi:10.5194/essd-12-2959-2020}}}
+\item{By mountain range name (English only, for searching mountain range names in other
+languages please use \code{gmba_search_names( )})}
+\item{By country, using ISO-3 codes}
+\item{By IPBES region or subregion, using the \emph{"str"} method from \code{gmba_ids_from_spi( )}}
+\item{By IPCC AR6 region, using the \emph{"str"} method from \code{gmba_ids_from_spi( )}}}
 Then, the selection options are:
 \enumerate{
 \item{All of the filtered mountain ranges}
@@ -30,8 +31,9 @@ Then, the selection options are:
 Finally, the output options are:
 \enumerate{
 \item{An \code{sf} object containing the selected mountain ranges}
-\item{A character vector with the names of the selected mountain ranges}
-\item{A character vector with the GMBA v2.0 IDs of the selected mountain ranges}}
+\item{A character vector with the GMBA Inventory v2.0 database names of the selected mountain ranges}
+\item{A character vector with the GMBA Inventory v2.0 map names of the selected mountain ranges}
+\item{A character vector with the GMBA Inventory v2.0 IDs of the selected mountain ranges}}
 }
 }
 \examples{
