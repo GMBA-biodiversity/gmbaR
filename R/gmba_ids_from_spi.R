@@ -224,7 +224,7 @@ gmba_ids_from_spi <- function(spi, regions, calc = "maj",
   ##### run function
   ranges <- NA
 
-  # spi = ipbes
+  # IPBES regions and subregions
   if(spi == "ipbes"){
     # if IPBES regions are given as input, adjust regions
     # (as the regions are the sum of their subregions)
@@ -285,9 +285,38 @@ gmba_ids_from_spi <- function(spi, regions, calc = "maj",
     output <- ranges[which(ranges %in% inv_ids)]
   }
 
-  # IPCC
-
-
+  # IPCC AR6 regions
+  if(spi == "ipcc"){
+    regions <- tolower(regions)
+    c <- which(names(gmba_ipcc_ar6_maj_str) == "GMBA_V2_ID")
+    # calc = maj
+    if(calc == "maj"){
+      for(r in 1:length(regions)){
+        ipcc_maj <- tolower(gmba_ipcc_ar6_maj_str$IPCC_maj)
+        r <- which(grepl(regions[r], ipcc_maj))
+        rangesloop <- gmba_ipcc_ar6_maj_str[r,c]
+        ranges <- c(ranges, rangesloop)
+      }
+    }
+    # calc = str
+    if(calc == "str"){
+      for(r in 1:length(regions)){
+        ipcc_str <- gmba_ipcc_ar6_maj_str$IPCC_str
+        for(i in 1:length(ipcc_str)){
+          ipcc_string <- tolower(unlist(strsplit(ipcc_str[i], ", ")))
+          for(n in 1:length(ipcc_string)){
+            if(grepl(regions[r], ipcc_string[n])){
+              rangesloop <- gmba_ipcc_ar6_maj_str[i,c]
+              ranges <- c(ranges, rangesloop)
+            }
+          }
+        }
+      }
+    }
+    ranges <- unique(ranges)
+    ranges <- ranges[-which(is.na(ranges))]
+    output <- ranges[which(ranges %in% inv_ids)]
+  }
 
   ##### return output
   return(output)
