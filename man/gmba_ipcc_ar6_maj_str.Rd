@@ -3,7 +3,7 @@
 \docType{data}
 \name{gmba_ipcc_ar6_maj_str}
 \alias{gmba_ipcc_ar6_maj_str}
-\title{IPCC AR6 region data for gmbaR}
+\title{IPCC AR6 region data per mountain range}
 \format{
 Dataframe with three columns: GMBA_V2_ID, IPCC_maj, IPCC_str
 }

@@ -3,7 +3,7 @@
 \docType{data}
 \name{gmba_ipbes_maj_str}
 \alias{gmba_ipbes_maj_str}
-\title{IPBES (sub)region data for gmbaR}
+\title{IPBES (sub)region data per mountain range}
 \format{
 Dataframe with three columns: GMBA_V2_ID, IPBES_maj, IPBES_str
 }

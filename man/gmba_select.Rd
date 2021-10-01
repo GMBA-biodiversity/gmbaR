@@ -2,7 +2,7 @@
 % Please edit documentation in R/gmba_select.R
 \name{gmba_select}
 \alias{gmba_select}
-\title{Select mountain ranges from the GMBA Inventory v2.0}
+\title{Interactively select mountain ranges from the GMBA Inventory v2.0}
 \usage{
 gmba_select()
 }
