@@ -117,6 +117,104 @@ gmba_ids_from_selection <- function(selection, manual = NULL){
 
 }
 
+# function to match IPBES (sub)regions with numbers 1 to 21
+gmba_match_ipbes <- function(ipbes_input){
+
+  ipbes_match <- c(1:21)
+  names(ipbes_match) <- c("Africa",
+                          "Central Africa",
+                          "East Africa and adjacent islands",
+                          "North Africa",
+                          "Southern Africa",
+                          "West Africa",
+                          "The Americas",
+                          "Caribbean",
+                          "Mesoamerica",
+                          "North America",
+                          "South America",
+                          "Asia and the Pacific",
+                          "North-East Asia",
+                          "Oceania",
+                          "South Asia",
+                          "South-East Asia",
+                          "Western Asia",
+                          "Europe and Central Asia",
+                          "Central and Western Europe",
+                          "Central Asia",
+                          "Eastern Europe")
+  ipbes_input <- names(ipbes_match)[ipbes_input]
+
+  return(ipbes_input)
+
+}
+
+# function to match IPCC AR6 regions with numbers 1 to 61
+gmba_match_ipcc <- function(ipcc_input){
+
+  ipcc_match <- c(1:61)
+  names(ipcc_match) <- c("GIC",
+                          "NWN",
+                          "NEN",
+                          "WNA",
+                          "CNA",
+                          "ENA",
+                          "NCA",
+                          "SCA",
+                          "CAR","CAR",
+                          "NWS",
+                          "NSA",
+                          "NES",
+                          "SAM",
+                          "SWS",
+                          "SES",
+                          "SSA",
+                          "NEU",
+                          "WCE",
+                          "EEU",
+                          "MED","MED",
+                          "SAH",
+                          "WAF",
+                          "CAF",
+                          "NEAF",
+                          "SEAF",
+                          "WSAF",
+                          "ESAF",
+                          "MDG",
+                          "RAR",
+                          "WSB",
+                          "ESB",
+                          "RFE",
+                          "WCA",
+                          "ECA",
+                          "TIB",
+                          "EAS",
+                          "ARP",
+                          "SAS",
+                          "SEA","SEA",
+                          "NAU",
+                          "CAU",
+                          "EAU",
+                          "SAU",
+                          "NZ",
+                          "EAN", "WAN",
+                          "ARO",
+                          "NPO",
+                          "EPO",
+                          "SPO",
+                          "NAO",
+                          "EAO",
+                          "SAO",
+                          "ARS",
+                          "BOB",
+                          "EIO",
+                          "SIO",
+                          "SOO")
+  ipcc_input <- names(ipcc_match)[ipcc_input]
+
+  return(ipcc_input)
+
+}
+
 # function to create color transparency (e.g. for maps)
 # not specifically relevant for the GMBA Inventory v2.0 but useful in general
 add_alpha <- function(col, alpha = 1){
