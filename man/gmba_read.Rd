@@ -4,13 +4,16 @@
 \alias{gmba_read}
 \title{Read the GMBA Inventory v2.0 to R}
 \usage{
-gmba_read(source = "web", local = NULL)
+gmba_read(source = "web", extend = "standard", local = NULL)
 }
 \arguments{
-\item{source}{Character string, options are \emph{web} (Default) or \emph{local}}
+\item{source}{Character string, options are \emph{"web"} (Default) or \emph{"local"}}
+
+\item{extend}{Character string, options are \emph{"standard"} (Default) or \emph{"broad"}. Check \url{https://www.earthenv.org/mountains}
+for the details on the options. Ignored when \code{source} is set to \emph{"local"}}
 
 \item{local}{Character string containing the path to the inventory shapefile on the local drive.
-Only needed when \code{source} is set to \emph{local}. Default is set to \emph{NULL}}
+Only needed when \code{source} is set to \emph{"local"}. Default is set to \emph{NULL}}
 }
 \value{
 \code{gmba_inv()}, a function containing the GMBA Inventory v2.0
@@ -22,7 +25,8 @@ without an assignment operator (e.g. "<-").
 \examples{
 \dontrun{
 gmba_read("web")
-gmba_read(source = "local", local = "GMBA_Inventory_V2_All_Attributes.shp")
+gmba_read("web", extend = "broad")
+gmba_read(source = "local", local = "GMBA_Inventory_v2.0.shp")
 }
 }
 \references{
