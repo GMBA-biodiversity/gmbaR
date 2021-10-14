@@ -1,6 +1,6 @@
 #' Get mountain range IDs from the Selection Tool
 #'
-#' Get your pre-selected GMBA Inventory v2.0 mountain range IDs from the \href{url}{Selection Tool} Excel file.
+#' Get your pre-selected GMBA Inventory v2.0 mountain range IDs from the \href{https://github.com/GMBA-biodiversity/Inventory/blob/main/GMBA_Inventory_v2.0_Selection_Tool.xlsx}{Selection Tool} Excel file.
 #'
 #' @param local Character string containing the path to the Selection Tool on the local drive
 #' @param overlap Logical, set if to output those selected mountain ranges from the Selection Tool

@@ -1,7 +1,7 @@
 #' Interactively select mountain ranges from the GMBA Inventory v2.0
 #'
 #' Interactively filter and select mountain ranges from the GMBA Inventory v2.0.
-#' This function can be considered as the \href{url}{Selection Tool} implemented in R.
+#' This function can be considered as the \href{https://github.com/GMBA-biodiversity/Inventory/blob/main/GMBA_Inventory_v2.0_Selection_Tool.xlsx}{Selection Tool} implemented in R.
 #'
 #' @details {First, you are given four options to filter the inventory. After filtering, you can select
 #' all or individual ranges from the filter. A 'stop' as response to each question stops
