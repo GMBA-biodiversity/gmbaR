@@ -6,9 +6,9 @@ Author: c(person("Jonas", "Geschke", role = c("aut", "cre"), comment = c(ORCID =
   person("Mark", "Snethlage", role = c("ctb")),
   person("Davnah", "Payne", role = c("ctb")))
 Maintainer: Jonas Geschke <jonas.geschke@ips.unibe.ch>
-Description: The GMBA Mountain Inventory v2.0 is an inventory of 8329 mountain ranges across the world, stored in a shapefile with a growing attribute table. Here, we provide a few R functions to explore the inventory and select mountain ranges based on user define criteria for subsequent analyses. 
+Description: The GMBA Mountain Inventory v2.0 is an inventory of 8329 mountain ranges across the world (in its standard extend), stored in a shapefile with a growing attribute table. Here, we provide a few R functions to explore the inventory and select mountain ranges based on user define criteria for subsequent analyses. 
 URL: https://github.com/GMBA-biodiversity/gmbaR
-License: CC BY-NC 4.0
+License: CC BY-NC-SA 4.0
 Encoding: UTF-8
 Imports:
   openxlsx,
