@@ -29,7 +29,7 @@ Then, use `devtools::install_github("GMBA-biodiversity/gmbaR")` to install *gmba
 <br/>
 
 ### Reading the inventory to R
-Before working with the GMBA Inventory v2.0, you need to read it to R. This can be done using *gmba_read*, which works for reading the inventory directly from the web or from your local drive. Note: *gmba_read* is to be used without an assignment operator (e.g. "<-").
+Before working with the GMBA Inventory v2.0, you need to read it to R. This can be done using *gmba_read*, which works for reading the inventory directly from the web or from your local drive. Note: *gmba_read* is to be used without an assignment operator (e.g. "<-"). For example, run `gmba_read("web")`.
 
 Thereafter, the inventory is stored in the function *gmba_inv* (similarly to the *gmbaR* functions starting with "*gmba_*"). This is because the inventory is used as reference/resource in the other *gmbaR* functions and therefore should not be renamed or edited. If you want to explore the inventory manually, you can do so with `View(gmba_inv())`. With `objectname <- gmba_inv()` you can turn the inventory into an object and further work with it as desired.
 <br/>
