@@ -16,7 +16,7 @@ Only needed when \code{source} is set to \emph{local}. Default is set to \emph{N
 \code{gmba_inv()}, a function containing the GMBA Inventory v2.0
 }
 \description{
-Read the GMBA Inventory v2.0 to R, from the web or the local drive. This function is to be used
+Read the GMBA Inventory v2.0 (standard extend, all layers) to R, from the web or the local drive. This function is to be used
 without an assignment operator (e.g. "<-").
 }
 \examples{

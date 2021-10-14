@@ -1,6 +1,6 @@
 #' Read the GMBA Inventory v2.0 to R
 #'
-#' Read the GMBA Inventory v2.0 to R, from the web or the local drive. This function is to be used
+#' Read the GMBA Inventory v2.0 (standard extend, all layers) to R, from the web or the local drive. This function is to be used
 #' without an assignment operator (e.g. "<-").
 #'
 #' @param source Character string, options are \emph{web} (Default) or \emph{local}
