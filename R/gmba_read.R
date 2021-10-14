@@ -12,11 +12,12 @@
 #' @references
 #' \url{https://www.earthenv.org/mountains}
 #'
-#' @import sf
+#' @import sf utils
 #' @export
 #'
 #' @examples
 #' \dontrun{
+#' gmba_read("web")
 #' gmba_read(source = "local", local = "GMBA_Inventory_V2_All_Attributes.shp")
 #' }
 
@@ -28,7 +29,20 @@ gmba_read <- function(source = "web", local = NULL) { # WEB TO ADD
   ##### run function
   # source = web
   if(source == "web"){
-    stop("Reading the GMBA Inventory v2.0 from the web is not implementet yet.")
+    # set the inventory web link (default layer: standard extent, all layers)
+    webfile <- "https://data.earthenv.org/mountains/standard/GMBA_Inventory_v2.0.zip"
+    # create temp files
+    temp <- tempfile()
+    temp2 <- tempfile()
+    # download the inventory zip and save it in 'temp'
+    download.file(webfile, temp)
+    # unzip the inventory in 'temp' and save it in 'temp2'
+    unzip(zipfile = temp, exdir = temp2)
+    # find the filepath of the inventory shapefile (.shp) in temp2
+    # the $ at the end of ".shp$" ensures we are not also finding files such as .shp.xml
+    shp_file <- list.files(temp2, pattern = ".shp$", full.names=TRUE)
+    # read the shapefile
+    gmba_inventory_v_2_0 <- st_read(shp_file, quiet=TRUE)
   }
 
   # source = local
@@ -36,6 +50,7 @@ gmba_read <- function(source = "web", local = NULL) { # WEB TO ADD
     if(is.null(local)){
       stop("No file path to the inventory shapefile provided.")
     }
+    # read the shapefile
     gmba_inventory_v_2_0 <- st_read(local, quiet=TRUE)
   }
 

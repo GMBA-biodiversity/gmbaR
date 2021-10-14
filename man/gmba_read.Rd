@@ -21,6 +21,7 @@ without an assignment operator (e.g. "<-").
 }
 \examples{
 \dontrun{
+gmba_read("web")
 gmba_read(source = "local", local = "GMBA_Inventory_V2_All_Attributes.shp")
 }
 }
