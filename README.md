@@ -2,9 +2,13 @@
 
 The GMBA Mountain Inventory v2.0 is an inventory of 8329 mountain ranges across the world, stored in a shapefile with a growing attribute table. Here, we provide a few R functions to explore the inventory and select mountain ranges based on user define criteria for subsequent analyses. 
 
-When using the inventory and/or *gmbaR* for your work, please cite the inventory publication as follows:
+When using the inventory and/or *gmbaR* for your work, please cite the inventory publication as well as the inventory dataset as follows:
 
-**CITATION**
+##### Publication
+CITATION
+
+##### Dataset
+CITATION
 <br/>
 <br/>
 
