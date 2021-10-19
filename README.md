@@ -5,15 +5,15 @@ The GMBA Mountain Inventory v2.0 is an inventory of 8329 mountain ranges across 
 When using the inventory and/or *gmbaR* for your work, please cite the inventory publication as well as the inventory dataset as follows:
 
 ##### Publication
-CITATION
+[Mark A. Snethlage, Jonas Geschke, Eva M. Spehn, Ajay Ranipeta, Nigel G. Yoccoz, Christian Körner, Walter Jetz, Markus Fischer, Davnah Urbach. (2021) A hierarchical inventory of the world’s mountains for global comparative mountain science / Manuscript submitted for publication]().
 
 ##### Dataset
-CITATION
+[Global Mountain Biodiversity Assessment (2021) GMBA Mountain Inventory v2. GMBA-EarthEnv. doi:10.48601/earthenv-t9k2-1407](https://doi.org/10.48601/earthenv-t9k2-1407).
 <br/>
 <br/>
 
 ### The inventory
-The GMBA Mountain Inventory v2.0 consists of two main files that are available on the [EarthEnv](https://www.earthenv.org/mountains) project website:
+The GMBA Mountain Inventory v2.0 consists of two main files that are available on the [EarthEnv](https://doi.org/10.48601/earthenv-t9k2-1407) project website:
 
 ##### The inventory shapefile
 The inventory shapefile *GMBA_Inventory_v2.0.shp* contains the spatial data of the GMBA Inventory v2.0.
