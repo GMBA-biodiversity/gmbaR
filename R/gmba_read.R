@@ -35,7 +35,7 @@ gmba_read <- function(source = "web", extend = "standard", local = NULL) {
     extend <- match.arg(extend, c("standard", "broad"))
     # set the inventory web link
     if(extend == "standard"){ # default layer: standard extent, all layers
-      webfile <- "https://data.earthenv.org/mountains/standard/GMBA_Inventory_v2.0.zip"
+      webfile <- "https://data.earthenv.org/mountains/standard/GMBA_Inventory_v2.0_standard.zip"
     }
     if(extend == "broad"){
       webfile <- "https://data.earthenv.org/mountains/broad/GMBA_Inventory_v2.0_broad.zip"
