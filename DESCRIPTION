@@ -1,7 +1,7 @@
 Package: gmbaR
 Type: Package
 Title: A set of R functions to work with the GMBA Inventory v2.0
-Version: 0.1.0
+Version: 1.0
 Author: c(person("Jonas", "Geschke", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5654-9313")),
   person("Mark", "Snethlage", role = c("ctb")),
   person("Davnah", "Payne", role = c("ctb")))
