@@ -7,7 +7,7 @@
 gmba_ids_from_names(rangename_vector)
 }
 \arguments{
-\item{rangename_vector}{Character vector of GMBA Inventory v2.0 mountain range names.
+\item{rangename_vector}{Character vector of GMBA Inventory v2.0 mountain range database names.
 Use \code{gmba_search_names()} if you do not know the inventory names needed}
 }
 \value{

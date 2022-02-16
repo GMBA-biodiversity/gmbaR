@@ -5,13 +5,13 @@
 #' @param part_of_rangename Character string of part of a mountain range name
 #' @param language Character string of a language to select. The options are:
 #' \itemize{
+#' \item{\emph{"AR"} = Arabic / اَلْعَرَبِيَّة}
 #' \item{\emph{"EN"} = English (default)}
 #' \item{\emph{"DE"} = German / Deutsch}
 #' \item{\emph{"ES"} = Spanish / español}
 #' \item{\emph{"FR"} = French / français}
 #' \item{\emph{"PT"} = Portuguese / português}
 #' \item{\emph{"RU"} = Russian / русский}
-#' \item{\emph{"TR"} = Turkish / Türkçe}
 #' \item{\emph{"ZH"} = Chinese / 中文}
 #' }
 #' Note: Mountain names in a language other than English are not complete but
@@ -43,17 +43,17 @@ gmba_search_names <- function(part_of_rangename, language = "EN", db = FALSE){
   }
 
   ##### check arguments
-  language <- match.arg(language, c("EN", "DE", "ES", "FR", "PT", "RU", "TR", "ZH"))
+  language <- match.arg(language, c("AR", "EN", "DE", "ES", "FR", "PT", "RU", "ZH"))
 
   ##### run functions
   name_vector_lowercase <- tolower(part_of_rangename)
-  if(language == "EN"){inv_names <- attributetable()$DBaseName}
+  if(language == "AR"){inv_names <- as.character(attributetable()$Name_AR)}
+  if(language == "EN"){inv_names <- as.character(attributetable()$Name_EN)}
   if(language == "DE"){inv_names <- as.character(attributetable()$Name_DE)}
   if(language == "ES"){inv_names <- as.character(attributetable()$Name_ES)}
   if(language == "FR"){inv_names <- as.character(attributetable()$Name_FR)}
   if(language == "PT"){inv_names <- as.character(attributetable()$Name_PT)}
   if(language == "RU"){inv_names <- as.character(attributetable()$Name_RU)}
-  if(language == "TR"){inv_names <- as.character(attributetable()$Name_TR)}
   if(language == "ZH"){inv_names <- as.character(attributetable()$Name_ZH)}
   if(language != "EN"){inv_names <- inv_names[-which(is.na(inv_names))]}
   inv_names_lowercase <- tolower(inv_names)
@@ -64,12 +64,13 @@ gmba_search_names <- function(part_of_rangename, language = "EN", db = FALSE){
     if(isTRUE(db)){
       rangenames_names <- rangenames
       c <- which(names(attributetable()) == "DBaseName")
+      if(language == "AR"){r <- which(attributetable()$Name_AR %in% rangenames)}
+      if(language == "EN"){r <- which(attributetable()$Name_EN %in% rangenames)}
       if(language == "DE"){r <- which(attributetable()$Name_DE %in% rangenames)}
       if(language == "ES"){r <- which(attributetable()$Name_ES %in% rangenames)}
       if(language == "FR"){r <- which(attributetable()$Name_FR %in% rangenames)}
       if(language == "PT"){r <- which(attributetable()$Name_PT %in% rangenames)}
       if(language == "RU"){r <- which(attributetable()$Name_RU %in% rangenames)}
-      if(language == "TR"){r <- which(attributetable()$Name_TR %in% rangenames)}
       if(language == "ZH"){r <- which(attributetable()$Name_ZH %in% rangenames)}
     rangenames <- attributetable()[r,c]
     names(rangenames) <- rangenames_names

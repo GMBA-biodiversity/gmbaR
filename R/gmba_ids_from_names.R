@@ -2,7 +2,7 @@
 #'
 #' Get GMBA Inventory v2.0 mountain range IDs from known mountain range names.
 #'
-#' @param rangename_vector Character vector of GMBA Inventory v2.0 mountain range names.
+#' @param rangename_vector Character vector of GMBA Inventory v2.0 mountain range database names.
 #' Use \code{gmba_search_names()} if you do not know the inventory names needed
 #'
 #' @return Character vector of the GMBA Inventory v2.0 mountain range IDs associated

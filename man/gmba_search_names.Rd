@@ -11,13 +11,13 @@ gmba_search_names(part_of_rangename, language = "EN", db = FALSE)
 
 \item{language}{Character string of a language to select. The options are:
 \itemize{
+\item{\emph{"AR"} = Arabic / اَلْعَرَبِيَّة}
 \item{\emph{"EN"} = English (default)}
 \item{\emph{"DE"} = German / Deutsch}
 \item{\emph{"ES"} = Spanish / español}
 \item{\emph{"FR"} = French / français}
 \item{\emph{"PT"} = Portuguese / português}
 \item{\emph{"RU"} = Russian / русский}
-\item{\emph{"TR"} = Turkish / Türkçe}
 \item{\emph{"ZH"} = Chinese / 中文}
 }
 Note: Mountain names in a language other than English are not complete but
