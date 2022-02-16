@@ -39,7 +39,7 @@ gmba_ids_from_countries <- function(iso,
 
   ###### set attributes
   r <- which(attributetable()$GMBA_V2_ID %in% gmba_ids_from_selection(range_selection, manual))
-  c <- which(names(attributetable()) == "Countries")
+  c <- which(names(attributetable()) == "CountryISO")
   inv_countries <- tolower(attributetable()[r,c])
 
   ###### check arguments

@@ -43,7 +43,7 @@ gmba_select <- function() { # IPCC + OVERLAP WARNING TO ADD
   ##### set attributes
   inv_ids <- attributetable()$GMBA_V2_ID
   inv_names <- tolower(attributetable()$DBaseName)
-  inv_countries <- tolower(attributetable()$Countries)
+  inv_countries <- tolower(attributetable()$CountryISO)
 
   ##### run function
   # raw range selection
