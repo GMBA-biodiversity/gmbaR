@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'  waffledata <- gmba_kbapa("Calculation", "rounded")
+#'  waffledata <- gmba_kbapa(data, "Calculation", "rounded")
 #' }
 
 gmba_kbapa <- function(fileobject, variable, option){
