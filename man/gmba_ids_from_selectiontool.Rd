@@ -16,7 +16,7 @@ that overlap with other (only those!) or not. Default is set to FALSE}
 Vector of the GMBA Inventory v2.0 mountain range names associated with the input IDs
 }
 \description{
-Get your pre-selected GMBA Inventory v2.0 mountain range IDs from the \href{https://github.com/GMBA-biodiversity/Inventory/blob/main/GMBA_Inventory_v2.0_Selection_Tool.xlsx}{Selection Tool} Excel file.
+Get your pre-selected GMBA Inventory v2.0 mountain range IDs from the \href{https://github.com/GMBA-biodiversity/Inventory/blob/main/Gmba_Inventory_v2.0_Selection_Tool_20200330.xlsx}{Selection Tool} Excel file.
 }
 \examples{
 \dontrun{

@@ -9,9 +9,9 @@ gmba_kbapa(fileobject, variable, option)
 \arguments{
 \item{fileobject}{Name of the master file object in the R studio environment, without quotes}
 
-\item{variable}{Character string of variable field/column from the master file, all except "ResultValue"}
+\item{variable}{Character string of variable field/column from the master file, all except \emph{"ResultValue"}}
 
-\item{option}{Character string of the option to filter}
+\item{option}{Character string of the option to filter. For variables \emph{"Name"} and \emph{"Metric"}, pattern matching is used, using \code{grepl( )}}
 }
 \value{
 Dataframe filtered from given master file object
@@ -21,6 +21,6 @@ Filter the results from the GMBA results on PA coverage of mountain KBAs. Curren
 }
 \examples{
 \dontrun{
- waffledata <- gmba_kbapa("Calculation", "rounded")
+ waffledata <- gmba_kbapa(data, "Calculation", "rounded")
 }
 }
