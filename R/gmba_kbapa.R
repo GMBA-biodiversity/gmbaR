@@ -18,10 +18,9 @@
 gmba_kbapa <- function(fileobject, variable, option){
 
   ###### rename master file object
-  if(exists("fileobject") == FALSE){
+  if(exists(fileobject) == FALSE){
     stop("Please provide the name of the master file object, without quotes")
   }
-  masterfile <- fileobject
 
   ###### check arguments
   variable <- match.arg(variable, c("ID", "ID_underscore", "Year", "UnitOfAnalysis", "Landscape",
@@ -41,19 +40,19 @@ gmba_kbapa <- function(fileobject, variable, option){
   }
 
   ##### run function
-  if(variable == "ID"){output <- masterfile[which(masterfile$ID == option),]}
-  if(variable == "ID_underscore"){output <- masterfile[which(masterfile$ID_underscore == option),]}
-  if(variable == "Year"){output <- masterfile[which(masterfile$Year == option),]}
-  if(variable == "UnitOfAnalysis"){output <- masterfile[which(masterfile$UnitOfAnalysis == option),]}
-  if(variable == "Landscape"){output <- masterfile[which(masterfile$Landscape == option),]}
-  if(variable == "Country"){output <- masterfile[which(masterfile$Country == option),]}
-  if(variable == "Mountain"){output <- masterfile[which(masterfile$Mountain == option),]}
-  if(variable == "Name"){output <- masterfile[which(masterfile$Name == option),]}
-  if(variable == "Metric"){output <- masterfile[which(masterfile$Metric == option),]}
-  if(variable == "Definition"){output <- masterfile[which(masterfile$Definition == option),]}
-  if(variable == "Calculation"){output <- masterfile[which(masterfile$Calculation == option),]}
-  if(variable == "Unit"){output <- masterfile[which(masterfile$Unit == option),]}
-  if(variable == "FilterString"){output <- masterfile[which(masterfile$FilterString == option),]}
+  if(variable == "ID"){output <- fileobject[which(fileobject$ID == option),]}
+  if(variable == "ID_underscore"){output <- fileobject[which(fileobject$ID_underscore == option),]}
+  if(variable == "Year"){output <- fileobject[which(fileobject$Year == option),]}
+  if(variable == "UnitOfAnalysis"){output <- fileobject[which(fileobject$UnitOfAnalysis == option),]}
+  if(variable == "Landscape"){output <- fileobject[which(fileobject$Landscape == option),]}
+  if(variable == "Country"){output <- fileobject[which(fileobject$Country == option),]}
+  if(variable == "Mountain"){output <- fileobject[which(fileobject$Mountain == option),]}
+  if(variable == "Name"){output <- fileobject[which(fileobject$Name == option),]}
+  if(variable == "Metric"){output <- fileobject[which(fileobject$Metric == option),]}
+  if(variable == "Definition"){output <- fileobject[which(fileobject$Definition == option),]}
+  if(variable == "Calculation"){output <- fileobject[which(fileobject$Calculation == option),]}
+  if(variable == "Unit"){output <- fileobject[which(fileobject$Unit == option),]}
+  if(variable == "FilterString"){output <- fileobject[which(fileobject$FilterString == option),]}
 
   ##### return output
   return(output)
