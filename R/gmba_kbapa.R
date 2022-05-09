@@ -19,7 +19,7 @@ gmba_kbapa <- function(fileobject, variable, option){
 
   ###### rename master file object
   if(exists(fileobject) == FALSE){
-    stop("Please provide the name of the master file object, without quotes")
+    stop("Please provide the fileobject name, without quotes")
   }
 
   ###### check arguments
