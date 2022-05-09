@@ -5,7 +5,7 @@ The GMBA Mountain Inventory v2.0 is an inventory of 8329 mountain ranges across 
 When using the inventory and/or *gmbaR* for your work, please cite the inventory publication as well as the inventory dataset as follows:
 
 ##### Publication
-Mark A. Snethlage, Jonas Geschke, Eva M. Spehn, Ajay Ranipeta, Nigel G. Yoccoz, Christian Körner, Walter Jetz, Markus Fischer, Davnah Urbach. (2021) A hierarchical inventory of the world’s mountains for global comparative mountain science [Manuscript submitted for publication].
+[Mark A. Snethlage, Jonas Geschke, Ajay Ranipeta, Walter Jetz, Nigel G. Yoccoz, Christian Körner, Eva M. Spehn, Markus Fischer, Davnah Urbach. (2022) A hierarchical inventory of the world’s mountains for global comparative mountain science. *Sci Data* 9, 149. doi:10.1038/s41597-022-01256-y](https://doi.org/10.1038/s41597-022-01256-y).
 
 ##### Dataset
 [Global Mountain Biodiversity Assessment (2021) GMBA Mountain Inventory v2. GMBA-EarthEnv. doi:10.48601/earthenv-t9k2-1407](https://doi.org/10.48601/earthenv-t9k2-1407).
@@ -19,7 +19,7 @@ The GMBA Mountain Inventory v2.0 consists of two main files that are available o
 The inventory shapefile *GMBA_Inventory_v2.0.shp* contains the spatial data of the GMBA Inventory v2.0.
 
 ##### The Selection Tool
-The selection tool [*Selection file.xlsx*](https://github.com/GMBA-biodiversity/Inventory/blob/main/GMBA_Inventory_v2.0_Selection_Tool.xlsx) is an Excel sheet providing the hierarchy data of the GMBA Inventory v2.0. When opening this in Excel, you have access to the full mountain inventory except the spatial data. You can manually select those mountain ranges you want to further use in your work in column AA ("Range_Selector") of the Excel sheet and then save the file for further use.
+The selection tool [*Selection file.xlsx*](https://github.com/GMBA-biodiversity/Inventory/blob/main/Gmba_Inventory_v2.0_Selection_Tool_20200330.xlsx) is an Excel sheet providing the hierarchy data of the GMBA Inventory v2.0. When opening this in Excel, you have access to the full mountain inventory except the spatial data. You can manually select those mountain ranges you want to further use in your work in column AA ("Range_Selector") of the Excel sheet and then save the file for further use.
 
 With *gmba_ids_from_selectiontool* you can read the selected IDs directly into R. Alternatively, you can use `gmba_select()` from *gmbaR* to filter and select mountain ranges from the inventory, or use one of the other functions listed below to get mountain range IDs based on different attributes.
 <br/>
