@@ -4,14 +4,15 @@
 \alias{gmba_kbapa}
 \title{Filter the GMBA KBA/PA master file}
 \usage{
-gmba_kbapa(fileobject, variable, option)
+gmba_kbapa(fileobject, options)
 }
 \arguments{
 \item{fileobject}{Name of the master file object in the R studio environment, without quotes}
 
-\item{variable}{Character string of variable field/column from the master file, all except \emph{"ResultValue"}}
-
-\item{option}{Character string of the option to filter. For variables \emph{"Name"} and \emph{"Metric"}, pattern matching is used, using \code{grepl( )}}
+\item{option}{List of vectors of character strings containing the options to filter, in the format \code{list(c("variable", "filterterm"), ...)}.
+The filter vectors are applied in the order given. The variable \emph{"ResultValue"} can not be filtered.
+Variables that can be filtered: "ID", "ID_underscore", "Year", "UnitOfAnalysis", "Landscape", "Country", "Mountain", "Name", "Metric", "Definition", "Calculation", "Unit", and "FilterString".
+For variables \emph{"Name"} and \emph{"Metric"}, pattern matching is used, using \code{grepl( )}.}
 }
 \value{
 Dataframe filtered from given master file object
