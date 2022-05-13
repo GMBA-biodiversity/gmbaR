@@ -22,6 +22,6 @@ Filter the results from the GMBA results on PA coverage of mountain KBAs. Curren
 }
 \examples{
 \dontrun{
- waffledata <- gmba_kbapa(data, "Calculation", "rounded")
+ waffledata <- gmba_kbapa(fulldata, list(c("UnitOfAnalysis", "Country"), c("Country", "CHE")))
 }
 }

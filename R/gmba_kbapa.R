@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'  waffledata <- gmba_kbapa(data, "Calculation", "rounded")
+#'  waffledata <- gmba_kbapa(fulldata, list(c("UnitOfAnalysis", "Country"), c("Country", "CHE")))
 #' }
 
 gmba_kbapa <- function(fileobject, filteroptions){
