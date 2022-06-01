@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' gmba_read("web")
+#' gmba_read()
 #' gmba_read("web", extend = "broad")
 #' gmba_read(source = "local", local = "GMBA_Inventory_v2.0.shp")
 #' }
