@@ -4,7 +4,7 @@
 \alias{gmba_read}
 \title{Read the GMBA Inventory v2.0 to R}
 \usage{
-gmba_read(source = "web", extend = "standard", local = NULL)
+gmba_read(source = "web", extend = "standard", local = NULL, timeout = 300)
 }
 \arguments{
 \item{source}{Character string, options are \emph{"web"} (Default) or \emph{"local"}}
@@ -14,6 +14,8 @@ for the details on the options. Ignored when \code{source} is set to \emph{"loca
 
 \item{local}{Character string containing the path to the inventory shapefile on the local drive.
 Only needed when \code{source} is set to \emph{"local"}. Default is set to \emph{NULL}}
+
+\item{timeout}{Numeric time in seconds, after what time period the function should stop trying to download the GMBA Inventory v2.0. Default is set to \emph{300} i.e. 5 minutes}
 }
 \value{
 \code{gmba_inv()}, a function containing the GMBA Inventory v2.0

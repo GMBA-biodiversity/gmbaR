@@ -8,6 +8,7 @@
 #' for the details on the options. Ignored when \code{source} is set to \emph{"local"}
 #' @param local Character string containing the path to the inventory shapefile on the local drive.
 #' Only needed when \code{source} is set to \emph{"local"}. Default is set to \emph{NULL}
+#' @param timeout Numeric time in seconds, after what time period the function should stop trying to download the GMBA Inventory v2.0. Default is set to \emph{300} i.e. 5 minutes
 #'
 #' @return \code{gmba_inv()}, a function containing the GMBA Inventory v2.0
 #'
@@ -24,7 +25,7 @@
 #' gmba_read(source = "local", local = "GMBA_Inventory_v2.0.shp")
 #' }
 
-gmba_read <- function(source = "web", extend = "standard", local = NULL) {
+gmba_read <- function(source = "web", extend = "standard", local = NULL, timeout = 300) {
 
   ##### check attributes
   source <- match.arg(source, c("web", "local"))
@@ -44,7 +45,8 @@ gmba_read <- function(source = "web", extend = "standard", local = NULL) {
     temp <- tempfile()
     temp2 <- tempfile()
     # download the inventory zip and save it in 'temp'
-    download.file(webfile, temp)
+    options(timeout = max(timeout, getOption("timeout")))
+    download.file(url = webfile, destfile = temp)
     # unzip the inventory in 'temp' and save it in 'temp2'
     unzip(zipfile = temp, exdir = temp2)
     # find the filepath of the inventory shapefile (.shp) in temp2
