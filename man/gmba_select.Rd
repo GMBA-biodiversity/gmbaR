@@ -12,6 +12,7 @@ Depending on the output format selection, see details
 \description{
 Interactively filter and select mountain ranges from the GMBA Inventory v2.0.
 This function can be considered as the \href{https://github.com/GMBA-biodiversity/Inventory/blob/main/Gmba_Inventory_v2.0_Selection_Tool_20200330.xlsx}{Selection Tool} implemented in R.
+Note: This is a function from gmbaR v1, but its usefulness has not been confirmed. Therefore, therefore the function is no longer technically managed.
 }
 \details{
 {First, you are given four options to filter the inventory. After filtering, you can select
