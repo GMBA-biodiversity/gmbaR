@@ -7,7 +7,11 @@
 gmba_subset(rangeid_vector)
 }
 \arguments{
-\item{rangeid_vector}{Vector (character or numeric) of GMBA Inventory v2.0 mountain range IDs}
+\item{rangeid_vector}{Vector (character or numeric) of GMBA Inventory v2.0 mountain range IDs. Optionally, the selections \emph{"basic}, \emph{"300}" and \emph{"100"} can be used:
+\itemize{
+\item{\emph{"basic"} = basic mountain ranges only}
+\item{\emph{"300"} = ranges included in the 300 pre-selection}
+\item{\emph{"100"} = ranges included in the 100 pre-selection}}}
 }
 \value{
 An \code{sf} object containing the given mountain ranges
@@ -19,5 +23,6 @@ Get a subset of the GMBA Inventory v2.0, based on mountain range IDs.
 \dontrun{
 blackforest_europeanalps <- gmba_subset(c(11175, 10001))
 blackforest_europeanalps <- gmba_subset(c("11175", "10001"))
+major_291_mountains_of_the_world <- gmba_subset("300")
 }
 }
