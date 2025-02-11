@@ -2,8 +2,8 @@
 % Please edit documentation in R/zzz.R
 \docType{package}
 \name{gmbaR}
-\alias{gmbaR}
 \alias{gmbaR-package}
+\alias{gmbaR}
 \title{gmbaR}
 \description{
 The GMBA Mountain Inventory v2.0 is an inventory of 8329 mountain ranges across the world,
